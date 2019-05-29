@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WanAndroidQi</string>
+
+    <!--bottom navigation item-->
+    <string name="bottom_item_home">主页</string>
+    <string name="bottom_item_wechat">公众号</string>
+    <string name="bottom_item_project">项目</string>
+    <string name="bottom_item_system">知识</string>
+    <string name="bottom_item_setting">设置</string>
+</resources>
