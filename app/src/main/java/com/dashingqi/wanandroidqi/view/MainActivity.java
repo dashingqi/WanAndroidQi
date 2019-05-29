@@ -9,6 +9,7 @@ import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.activity.BaseActivity;
 import com.dashingqi.wanandroidqi.base.activity.BasePresenterActivity;
 import com.dashingqi.wanandroidqi.base.fragment.BasicFragment;
+import com.dashingqi.wanandroidqi.contract.main.MainContract;
 import com.dashingqi.wanandroidqi.presenter.main.MainPresenter;
 import com.dashingqi.wanandroidqi.view.home.HomeFragment;
 import com.dashingqi.wanandroidqi.view.project.ProjectFragment;
@@ -18,7 +19,7 @@ import com.dashingqi.wanandroidqi.view.wechat.WeChatFragment;
 
 import butterknife.BindView;
 
-public class MainActivity extends BasePresenterActivity<MainPresenter> {
+public class MainActivity extends BasePresenterActivity<MainPresenter> implements MainContract.View {
 
     @BindView(R.id.mBottomNav)
     protected BottomNavigationView mBottomNav;
@@ -126,4 +127,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> {
     }
 
 
+    @Override
+    public void showUpdateDialog() {
+
+    }
 }
