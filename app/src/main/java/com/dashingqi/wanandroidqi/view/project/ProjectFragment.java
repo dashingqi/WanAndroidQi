@@ -2,7 +2,9 @@ package com.dashingqi.wanandroidqi.view.project;
 
 
 import com.dashingqi.wanandroidqi.R;
-import com.dashingqi.wanandroidqi.base.fragment.BasicFragment;
+import com.dashingqi.wanandroidqi.base.fragment.BaseFragment;
+import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
+import com.dashingqi.wanandroidqi.base.presenter.IPresenter;
 
 /**
  * @ProjectName: WanAndroidQi
@@ -15,10 +17,15 @@ import com.dashingqi.wanandroidqi.base.fragment.BasicFragment;
  * @UpdateRemark:
  * @Version: 1.0
  */
-public class ProjectFragment extends BasicFragment {
+public class ProjectFragment extends BaseLoadingFragment {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public IPresenter getPresenter() {
+        return null;
     }
 
     @Override

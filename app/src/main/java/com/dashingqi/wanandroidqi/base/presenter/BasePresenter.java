@@ -24,7 +24,7 @@ public class BasePresenter<V extends BaseView> implements IPresenter<V> {
     }
 
     @Override
-    public void detachView(V mView) {
+    public void detachView() {
         this.mView = null;
 
     }

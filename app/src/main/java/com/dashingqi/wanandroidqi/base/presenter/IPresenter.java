@@ -26,9 +26,8 @@ public interface IPresenter<V extends BaseView> {
     /**
      * 解绑View
      *
-     * @param mView
      */
-    void detachView(V mView);
+    void detachView();
 
     /**
      * 当前View是否处于绑定的状态

@@ -6,9 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import com.dashingqi.wanandroidqi.R;
-import com.dashingqi.wanandroidqi.base.activity.BaseActivity;
 import com.dashingqi.wanandroidqi.base.activity.BasePresenterActivity;
-import com.dashingqi.wanandroidqi.base.fragment.BasicFragment;
+import com.dashingqi.wanandroidqi.base.fragment.BaseFragment;
 import com.dashingqi.wanandroidqi.contract.main.MainContract;
 import com.dashingqi.wanandroidqi.presenter.main.MainPresenter;
 import com.dashingqi.wanandroidqi.view.home.HomeFragment;
@@ -27,7 +26,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
     @BindView(R.id.mContainerView)
     protected FrameLayout mContainerView;
 
-    private BasicFragment[] mFragments = new BasicFragment[5];
+    private BaseFragment[] mFragments = new BaseFragment[5];
     private int mPreFragmentFlag = 0;
     private MainPresenter mainPresenter;
 

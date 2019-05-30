@@ -1,6 +1,7 @@
 package com.dashingqi.wanandroidqi.base.fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -10,6 +11,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.dashingqi.wanandroidqi.base.view.BaseView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -17,7 +21,7 @@ import butterknife.Unbinder;
 /**
  * @ProjectName: WanAndroidQi
  * @Package: com.dashingqi.wanandroidqi.basic.fragment
- * @ClassName: BasicFragment
+ * @ClassName: BaseFragment
  * @Author: DashingQI
  * @CreateDate: 2019/5/11 6:30 PM
  * @UpdateUser: 更新者
@@ -25,11 +29,12 @@ import butterknife.Unbinder;
  * @UpdateRemark:
  * @Version: 1.0
  */
-public abstract class BasicFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected Activity mActivity;
     private View mView;
     private Unbinder mBinder;
+    protected ProgressDialog mProgressDialog;
 
     protected abstract void initData();
 
@@ -50,7 +55,10 @@ public abstract class BasicFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(getLayoutId(), container, false);
-        mBinder = ButterKnife.bind(mView, mActivity);
+        mBinder = ButterKnife.bind(this, mView);
+        mProgressDialog = new ProgressDialog(mActivity);
+        mProgressDialog.setTitle("正在加载");
+        mProgressDialog.setCancelable(false);
         return mView;
     }
 
@@ -60,6 +68,7 @@ public abstract class BasicFragment extends Fragment {
         initView();
         initData();
         loadData();
+
     }
 
     @Override
@@ -68,5 +77,10 @@ public abstract class BasicFragment extends Fragment {
         if (mBinder != null) {
             mBinder.unbind();
         }
+    }
+
+    @Override
+    public void showToast(String msg) {
+        Toast.makeText(mActivity, "msg", Toast.LENGTH_SHORT).show();
     }
 }
