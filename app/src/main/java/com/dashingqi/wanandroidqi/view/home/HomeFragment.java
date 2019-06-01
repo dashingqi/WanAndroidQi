@@ -7,7 +7,10 @@ import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
 import com.dashingqi.wanandroidqi.base.fragment.BasePresenterFragment;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
+import com.dashingqi.wanandroidqi.dagger2.component.fragment.DaggerHomeFragmentComponent;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -27,7 +30,8 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @BindView(R.id.mTvText)
     protected TextView mTvText;
 
-    private HomeFragmentPresenter homeFragmentPresenter;
+    @Inject
+    HomeFragmentPresenter homeFragmentPresenter;
 
     @Override
     protected void initData() {
@@ -41,7 +45,6 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     protected void initView() {
-        homeFragmentPresenter = new HomeFragmentPresenter();
         super.initView();
     }
 
@@ -75,5 +78,10 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     public void autoRefresh() {
 
+    }
+
+    @Override
+    protected void inject() {
+        DaggerHomeFragmentComponent.create().inject(HomeFragment.this);
     }
 }

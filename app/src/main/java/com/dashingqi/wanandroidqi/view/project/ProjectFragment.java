@@ -63,4 +63,9 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectPresenter> imple
         mTvText.setText(data);
 
     }
+
+    @Override
+    protected void inject() {
+
+    }
 }

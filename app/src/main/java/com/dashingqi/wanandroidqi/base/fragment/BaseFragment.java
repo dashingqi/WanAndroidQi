@@ -42,6 +42,8 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected abstract void loadData();
 
+    protected abstract void inject();
+
     protected abstract @LayoutRes
     int getLayoutId();
 
@@ -56,6 +58,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(getLayoutId(), container, false);
         mBinder = ButterKnife.bind(this, mView);
+        inject();
         mProgressDialog = new ProgressDialog(mActivity);
         mProgressDialog.setTitle("正在加载");
         mProgressDialog.setCancelable(false);

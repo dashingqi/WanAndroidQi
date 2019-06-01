@@ -42,4 +42,9 @@ public class WeChatFragment extends BaseLoadingFragment {
     protected int getLayoutId() {
         return R.layout.fragment_we_chat;
     }
+
+    @Override
+    protected void inject() {
+
+    }
 }

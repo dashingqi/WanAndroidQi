@@ -42,4 +42,9 @@ public class SystemFragment extends BaseLoadingFragment {
     protected int getLayoutId() {
         return R.layout.fragment_system;
     }
+
+    @Override
+    protected void inject() {
+
+    }
 }

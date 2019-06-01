@@ -6,6 +6,8 @@ import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
 import com.dashingqi.wanandroidqi.model.home.HomeModel;
 
+import javax.inject.Inject;
+
 /**
  * @ProjectName: WanAndroidQi
  * @Package: com.dashingqi.wanandroidqi.presenter.home
@@ -19,6 +21,12 @@ import com.dashingqi.wanandroidqi.model.home.HomeModel;
  * @Version: 1.0
  */
 public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.View> implements HomeFragmentContract.Presenter {
+
+    @Inject
+    public HomeFragmentPresenter() {
+
+    }
+
     @Override
     public void loadBannerData(String param) {
         //执行加载BannerData

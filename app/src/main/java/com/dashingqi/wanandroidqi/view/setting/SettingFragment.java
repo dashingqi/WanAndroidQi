@@ -63,4 +63,9 @@ public class SettingFragment extends BaseLoadingFragment<SettingFragmentPresente
         mTvSetting.setText(data);
 
     }
+
+    @Override
+    protected void inject() {
+
+    }
 }
