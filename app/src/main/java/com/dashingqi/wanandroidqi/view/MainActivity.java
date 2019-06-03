@@ -9,12 +9,16 @@ import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.activity.BasePresenterActivity;
 import com.dashingqi.wanandroidqi.base.fragment.BaseFragment;
 import com.dashingqi.wanandroidqi.contract.main.MainContract;
+import com.dashingqi.wanandroidqi.dagger2.component.activity.DaggerMainActivityComponent;
+import com.dashingqi.wanandroidqi.dagger2.component.activity.MainActivityComponent;
 import com.dashingqi.wanandroidqi.presenter.main.MainPresenter;
 import com.dashingqi.wanandroidqi.view.home.HomeFragment;
 import com.dashingqi.wanandroidqi.view.project.ProjectFragment;
 import com.dashingqi.wanandroidqi.view.setting.SettingFragment;
 import com.dashingqi.wanandroidqi.view.system.SystemFragment;
 import com.dashingqi.wanandroidqi.view.wechat.WeChatFragment;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -28,7 +32,10 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
 
     private BaseFragment[] mFragments = new BaseFragment[5];
     private int mPreFragmentFlag = 0;
-    private MainPresenter mainPresenter;
+    @Inject
+    protected MainPresenter mainPresenter;
+
+    private MainActivityComponent mMainActivityComponent;
 
     @Override
     public MainPresenter getPresenter() {
@@ -37,7 +44,6 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
 
     @Override
     protected void initView() {
-        mainPresenter = new MainPresenter();
         super.initView();
         initFragment();
         initBottomNavigateView();
@@ -123,6 +129,12 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void inject() {
+        mMainActivityComponent = DaggerMainActivityComponent.builder().build();
+        mMainActivityComponent.inject(MainActivity.this);
     }
 
 

@@ -3,6 +3,8 @@ package com.dashingqi.wanandroidqi.presenter.main;
 import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
 import com.dashingqi.wanandroidqi.contract.main.MainContract;
 
+import javax.inject.Inject;
+
 /**
  * @ProjectName: WanAndroidQi
  * @Package: com.dashingqi.wanandroidqi.presenter.main
@@ -15,6 +17,11 @@ import com.dashingqi.wanandroidqi.contract.main.MainContract;
  * @Version: 1.0
  */
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
+
+    @Inject
+    public MainPresenter(){
+
+    }
 
     @Override
     public void checkApkVersion() {

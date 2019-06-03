@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
-import com.dashingqi.wanandroidqi.base.fragment.BasePresenterFragment;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
 import com.dashingqi.wanandroidqi.dagger2.component.fragment.DaggerHomeFragmentComponent;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;

@@ -1,8 +1,6 @@
 package com.dashingqi.wanandroidqi.dagger2.module;
 
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
-import com.dashingqi.wanandroidqi.view.home.HomeFragment;
-
 import dagger.Module;
 import dagger.Provides;
 

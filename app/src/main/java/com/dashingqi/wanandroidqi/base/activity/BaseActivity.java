@@ -36,11 +36,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected abstract @LayoutRes
     int getLayoutId();
 
+    protected  abstract void inject();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         mBinder = ButterKnife.bind(this);
+        inject();
         initView();
         initData();
     }
