@@ -8,6 +8,7 @@ import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
 import com.dashingqi.wanandroidqi.dagger2.component.fragment.DaggerHomeFragmentComponent;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
+import com.dashingqi.wanandroidqi.view.MainActivity;
 
 import javax.inject.Inject;
 
@@ -81,6 +82,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     protected void inject() {
-        DaggerHomeFragmentComponent.create().inject(HomeFragment.this);
+        ((MainActivity) mActivity).getComponent().getHomeFragmentComponent().inject(HomeFragment.this);
+       // DaggerHomeFragmentComponent.create().inject(HomeFragment.this);
     }
 }

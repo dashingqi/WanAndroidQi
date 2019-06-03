@@ -1,5 +1,6 @@
 package com.dashingqi.wanandroidqi.dagger2.component.activity;
 
+import com.dashingqi.wanandroidqi.dagger2.component.fragment.HomeFragmentComponent;
 import com.dashingqi.wanandroidqi.view.MainActivity;
 
 import dagger.Component;
@@ -18,4 +19,6 @@ import dagger.Component;
 @Component
 public interface MainActivityComponent {
     void inject(MainActivity mainActivity);
+
+    HomeFragmentComponent getHomeFragmentComponent();
 }

@@ -142,4 +142,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
     public void showUpdateDialog() {
 
     }
+
+    public MainActivityComponent getComponent() {
+        return mMainActivityComponent;
+    }
 }
