@@ -18,6 +18,10 @@ import com.dashingqi.wanandroidqi.model.setting.SettingModel;
  * @Version: 1.0
  */
 public class SettingFragmentPresenter extends BasePresenter<SettingFragmentContract.View> implements SettingFragmentContract.Presenter {
+    public SettingFragmentPresenter(com.dashingqi.wanandroidqi.model.DataModel dataModel) {
+        super(dataModel);
+    }
+
     @Override
     public void loadSettingData() {
         if (isAttachView()) {

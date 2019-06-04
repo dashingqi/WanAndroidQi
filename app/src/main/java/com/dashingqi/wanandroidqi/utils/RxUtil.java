@@ -1,7 +1,13 @@
 package com.dashingqi.wanandroidqi.utils;
 
+import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
+import com.dashingqi.wanandroidqi.network.http.exception.ApiException;
+
+
+import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -12,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  * @CreateDate: 2019-06-04 15:52
  * @UpdateUser: 更新者
  * @UpdateDate: 2019-06-04 15:52
- * @UpdateRemark:
+ * @UpdateRemark: RxJava的封装
  * @Version: 1.0
  */
 public class RxUtil {
@@ -29,5 +35,44 @@ public class RxUtil {
     public static <T> ObservableTransformer<T, T> rxSchedulerHelper() {
         return observable -> observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 对结果进行处理
+     *
+     * @param <T>
+     * @return
+     */
+    public static <T> ObservableTransformer<BaseResponse<T>, T> handleResult() {
+        return upstream ->
+                upstream.flatMap((Function<BaseResponse<T>, Observable<T>>) baseResponse ->
+                {
+                    //当请求成功的时候 == 0 表示请求成功
+                    if (baseResponse.getCode() == 0) {
+                        //返回数据
+                        return createObservable(baseResponse.getData());
+                    }
+                    //返回异常
+                    return Observable.error(new ApiException(baseResponse.getCode(), baseResponse.getMsg()));
+                });
+    }
+
+    /**
+     * 创建请求成功时的数据源
+     *
+     * @param data
+     * @param <T>
+     * @return
+     */
+    private static <T> Observable<T> createObservable(T data) {
+        return Observable.create(emitter -> {
+            try {
+                emitter.onNext(data);
+                emitter.onComplete();
+
+            } catch (Exception e) {
+                emitter.onError(e);
+            }
+        });
     }
 }

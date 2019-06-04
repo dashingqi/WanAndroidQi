@@ -42,7 +42,7 @@ public class SettingFragment extends BaseLoadingFragment<SettingFragmentPresente
 
     @Override
     protected void initView() {
-        mSetPresenter = new SettingFragmentPresenter();
+        // mSetPresenter = new SettingFragmentPresenter();
         super.initView();
     }
 

@@ -2,6 +2,7 @@ package com.dashingqi.wanandroidqi.presenter.main;
 
 import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
 import com.dashingqi.wanandroidqi.contract.main.MainContract;
+import com.dashingqi.wanandroidqi.model.DataModel;
 
 import javax.inject.Inject;
 
@@ -18,9 +19,9 @@ import javax.inject.Inject;
  */
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
-    @Inject
-    public MainPresenter(){
 
+    public MainPresenter(DataModel dataModel) {
+        super(dataModel);
     }
 
     @Override

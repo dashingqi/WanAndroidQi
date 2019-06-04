@@ -2,6 +2,8 @@ package com.dashingqi.wanandroidqi.base.presenter;
 
 import com.dashingqi.wanandroidqi.base.view.BaseView;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * @ProjectName: WanAndroidQi
  * @Package: com.dashingqi.wanandroidqi.base.presenter
@@ -25,7 +27,6 @@ public interface IPresenter<V extends BaseView> {
 
     /**
      * 解绑View
-     *
      */
     void detachView();
 
@@ -35,5 +36,17 @@ public interface IPresenter<V extends BaseView> {
      * @return
      */
     boolean isAttachView();
+
+    /**
+     * 管理Rx的订阅事件
+     *
+     * @param disposable
+     */
+    void addRcSubScribe(Disposable disposable);
+
+    /**
+     * 订阅事件
+     */
+    void subScribeEvent();
 
 }

@@ -18,6 +18,10 @@ import com.dashingqi.wanandroidqi.model.project.ProjectModel;
  * @Version: 1.0
  */
 public class ProjectPresenter extends BasePresenter<ProjectContract.View> implements ProjectContract.Presenter {
+    public ProjectPresenter(com.dashingqi.wanandroidqi.model.DataModel dataModel) {
+        super(dataModel);
+    }
+
     @Override
     public void getProjectData() {
 

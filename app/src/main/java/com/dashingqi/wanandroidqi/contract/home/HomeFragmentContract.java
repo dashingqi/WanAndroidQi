@@ -2,6 +2,9 @@ package com.dashingqi.wanandroidqi.contract.home;
 
 import com.dashingqi.wanandroidqi.base.presenter.IPresenter;
 import com.dashingqi.wanandroidqi.base.view.BaseView;
+import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+
+import java.util.List;
 
 /**
  * @ProjectName: WanAndroidQi
@@ -17,7 +20,7 @@ import com.dashingqi.wanandroidqi.base.view.BaseView;
 public interface HomeFragmentContract {
     interface View extends BaseView {
         //展示首页数据
-        void showBannerData(String data);
+        void showBannerData(List<BannerDataBean> bannerDataBeanList);
 
         //展示首页数据
         void showData();

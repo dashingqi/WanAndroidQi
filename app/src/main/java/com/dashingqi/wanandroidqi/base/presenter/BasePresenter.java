@@ -1,6 +1,12 @@
 package com.dashingqi.wanandroidqi.base.presenter;
 
 import com.dashingqi.wanandroidqi.base.view.BaseView;
+import com.dashingqi.wanandroidqi.model.DataModel;
+
+import javax.inject.Inject;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @ProjectName: WanAndroidQi
@@ -15,7 +21,15 @@ import com.dashingqi.wanandroidqi.base.view.BaseView;
  */
 public class BasePresenter<V extends BaseView> implements IPresenter<V> {
 
-    public V mView;
+    protected V mView;
+    protected DataModel mModel;
+    private CompositeDisposable mCompositeDisposable;
+
+
+    @Inject
+    public BasePresenter(DataModel dataModel) {
+        mModel = dataModel;
+    }
 
     @Override
     public void attachView(V mView) {
@@ -26,11 +40,29 @@ public class BasePresenter<V extends BaseView> implements IPresenter<V> {
     @Override
     public void detachView() {
         this.mView = null;
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
+        }
 
     }
 
     @Override
     public boolean isAttachView() {
         return this.mView != null;
+    }
+
+    @Override
+    public void addRcSubScribe(Disposable disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+
+        mCompositeDisposable.add(disposable);
+
+    }
+
+    @Override
+    public void subScribeEvent() {
+
     }
 }

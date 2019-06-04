@@ -1,10 +1,17 @@
 package com.dashingqi.wanandroidqi.presenter.home;
 
-import com.dashingqi.wanandroidqi.base.model.CallBack;
-import com.dashingqi.wanandroidqi.base.model.DataModel;
+import android.util.Log;
+
+import com.dashingqi.wanandroidqi.base.Observer.BaseObserver;
 import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
-import com.dashingqi.wanandroidqi.model.home.HomeModel;
+import com.dashingqi.wanandroidqi.event.AutoRefreshEvent;
+import com.dashingqi.wanandroidqi.model.DataModel;
+import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+import com.dashingqi.wanandroidqi.utils.RxBus;
+import com.dashingqi.wanandroidqi.utils.RxUtil;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,45 +28,39 @@ import javax.inject.Inject;
  * @Version: 1.0
  */
 public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.View> implements HomeFragmentContract.Presenter {
+    private static final String TAG = "HomeFragmentPresenter";
 
     @Inject
-    public HomeFragmentPresenter() {
-
+    public HomeFragmentPresenter(DataModel dataModel) {
+        super(dataModel);
     }
 
     @Override
     public void loadBannerData(String param) {
         //执行加载BannerData
+        addRcSubScribe(
+                mModel.getBannerData()
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .compose(RxUtil.handleResult())
+                        .subscribeWith(new BaseObserver<List<BannerDataBean>>(mView, false, false) {
+                            @Override
+                            public void onNext(List<BannerDataBean> bannerDataBeans) {
+                                super.onNext(bannerDataBeans);
+                                Log.d(TAG, "BannerOnNext " + bannerDataBeans.size());
+                                mView.showBannerData(bannerDataBeans);
+                            }
+                        })
+        );
 
-        if (isAttachView()) {
-            mView.showLoading();
-            DataModel.getInstance(HomeModel.class)
-                    .params(param)
-                    .execute(new CallBack<String>() {
+    }
 
-                        @Override
-                        public void onSuccess(String data) {
-                            mView.showBannerData(data);
-                        }
+    @Override
+    public void subScribeEvent() {
+        addRcSubScribe(RxBus.getInstance().toObservable(AutoRefreshEvent.class)
+                .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
+                .subscribe(loginEvent -> mView.autoRefresh())
+        );
 
-                        @Override
-                        public void onFailed(String data) {
-
-                        }
-
-                        @Override
-                        public void onError() {
-
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                            mView.hideLoading();
-
-                        }
-                    });
-        }
     }
 
     @Override
@@ -71,5 +72,6 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
     public void loadMoreData() {
 
     }
+
 
 }
