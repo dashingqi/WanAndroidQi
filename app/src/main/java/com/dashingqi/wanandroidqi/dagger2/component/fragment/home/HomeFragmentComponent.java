@@ -1,5 +1,6 @@
-package com.dashingqi.wanandroidqi.dagger2.component.fragment;
+package com.dashingqi.wanandroidqi.dagger2.component.fragment.home;
 
+import com.dashingqi.wanandroidqi.dagger2.scope.PreFragment;
 import com.dashingqi.wanandroidqi.view.home.HomeFragment;
 
 import dagger.Component;
@@ -15,6 +16,7 @@ import dagger.Component;
  * @UpdateRemark:
  * @Version: 1.0
  */
+@PreFragment
 @Component
 public interface HomeFragmentComponent {
     void inject(HomeFragment homeFragment);

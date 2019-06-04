@@ -133,8 +133,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
 
     @Override
     protected void inject() {
-        mMainActivityComponent = DaggerMainActivityComponent.builder().build();
-        mMainActivityComponent.inject(MainActivity.this);
+        DaggerMainActivityComponent.builder().build().inject(MainActivity.this);
     }
 
 
