@@ -6,10 +6,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import com.dashingqi.wanandroidqi.R;
+import com.dashingqi.wanandroidqi.application.ApplicationQi;
 import com.dashingqi.wanandroidqi.base.activity.BasePresenterActivity;
 import com.dashingqi.wanandroidqi.base.fragment.BaseFragment;
 import com.dashingqi.wanandroidqi.contract.main.MainContract;
-import com.dashingqi.wanandroidqi.dagger2.component.activity.MainActivityComponent;
+import com.dashingqi.wanandroidqi.di.component.activity.DaggerMainActivityComponent;
+import com.dashingqi.wanandroidqi.di.component.activity.MainActivityComponent;
 import com.dashingqi.wanandroidqi.presenter.main.MainPresenter;
 import com.dashingqi.wanandroidqi.view.home.HomeFragment;
 import com.dashingqi.wanandroidqi.view.project.ProjectFragment;
@@ -31,7 +33,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
 
     private BaseFragment[] mFragments = new BaseFragment[5];
     private int mPreFragmentFlag = 0;
-    //@Inject
+    @Inject
     protected MainPresenter mainPresenter;
 
     private MainActivityComponent mMainActivityComponent;
@@ -132,7 +134,10 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
 
     @Override
     protected void inject() {
-        //DaggerMainActivityComponent.create().inject(MainActivity.this);
+        mMainActivityComponent = DaggerMainActivityComponent.builder().appComponent(ApplicationQi.getAppComponent()).build();
+        mMainActivityComponent.inject(this);
+
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.dashingqi.wanandroidqi.dagger2.module;
+package com.dashingqi.wanandroidqi.di.module;
 
 import com.dashingqi.wanandroidqi.application.ApplicationQi;
 import com.dashingqi.wanandroidqi.common.Constant;

@@ -6,8 +6,10 @@ import android.widget.TextView;
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
+import com.dashingqi.wanandroidqi.model.home.HomeFragmentModel;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
+import com.dashingqi.wanandroidqi.view.MainActivity;
 
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @BindView(R.id.mTvText)
     protected TextView mTvText;
 
-    //    @Inject
+    @Inject
     HomeFragmentPresenter homeFragmentPresenter;
 
     @Override
@@ -46,7 +48,6 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     protected void initView() {
-        //homeFragmentPresenter = new HomeFragmentPresenter(new DataModel());
         super.initView();
     }
 
@@ -85,7 +86,9 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     protected void inject() {
-        //((MainActivity) mActivity).getComponent().getHomeFragmentComponent().inject(HomeFragment.this);
-        //DaggerHomeFragmentComponent.create().inject(HomeFragment.this);
+        ((MainActivity) mActivity).
+                getComponent().
+                getHomeFragmentComponent(new HomeFragmentModel()).
+                inject(HomeFragment.this);
     }
 }

@@ -7,6 +7,8 @@ import com.dashingqi.wanandroidqi.network.http.api.HomeApis;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 
 /**
@@ -23,6 +25,8 @@ import io.reactivex.Observable;
 public class NetWorkHelperImpl implements NetWorkHelper {
     private HomeApis mHomeApis;
 
+
+    @Inject
     public NetWorkHelperImpl(HomeApis homeApis) {
         mHomeApis = homeApis;
 

@@ -1,7 +1,7 @@
-package com.dashingqi.wanandroidqi.dagger2.component;
+package com.dashingqi.wanandroidqi.di.component;
 
 import com.dashingqi.wanandroidqi.application.ApplicationQi;
-import com.dashingqi.wanandroidqi.dagger2.module.AppModule;
+import com.dashingqi.wanandroidqi.di.module.AppModule;
 import com.dashingqi.wanandroidqi.model.DataModel;
 
 import javax.inject.Singleton;
@@ -28,6 +28,6 @@ public interface AppComponent {
 
     ApplicationQi getApp();
 
-    // DataModel getDataModel();
+    DataModel getDataModel();
 
 }

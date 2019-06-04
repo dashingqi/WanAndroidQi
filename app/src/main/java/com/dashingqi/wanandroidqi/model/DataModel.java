@@ -4,6 +4,7 @@ import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.network.http.network.NetWorkHelper;
+import com.dashingqi.wanandroidqi.network.http.network.NetWorkHelperImpl;
 
 
 import java.util.List;
@@ -27,11 +28,11 @@ public class DataModel implements NetWorkHelper {
 
     private NetWorkHelper mNetWorkHelper;
 
-    public DataModel(NetWorkHelper netWorkHelper) {
+    @Inject
+    public DataModel(NetWorkHelperImpl netWorkHelper) {
         mNetWorkHelper = netWorkHelper;
     }
 
-    @Override
     public Observable<BaseResponse<List<BannerDataBean>>> getBannerData() {
         return mNetWorkHelper.getBannerData();
     }

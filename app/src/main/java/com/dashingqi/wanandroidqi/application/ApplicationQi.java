@@ -3,9 +3,9 @@ package com.dashingqi.wanandroidqi.application;
 import android.app.Application;
 import android.content.Context;
 
-import com.dashingqi.wanandroidqi.dagger2.component.AppComponent;
-import com.dashingqi.wanandroidqi.dagger2.component.DaggerAppComponent;
-import com.dashingqi.wanandroidqi.dagger2.module.AppModule;
+import com.dashingqi.wanandroidqi.di.component.AppComponent;
+import com.dashingqi.wanandroidqi.di.component.DaggerAppComponent;
+import com.dashingqi.wanandroidqi.di.module.AppModule;
 
 /**
  * @ProjectName: WanAndroidQi
@@ -29,7 +29,6 @@ public class ApplicationQi extends Application {
         mApp = this;
         instance = getApplicationContext();
         mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
-
     }
 
     public static ApplicationQi getContext() {
