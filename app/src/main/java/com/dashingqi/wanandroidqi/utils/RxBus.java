@@ -17,13 +17,26 @@ import io.reactivex.subjects.Subject;
  */
 public class RxBus {
     private final Subject<Object> mSubject;
+    private static volatile RxBus mRxBus;
 
     public RxBus() {
+        //因为Subject是非线程安全的，所以转成了一个SerializedSubject
         this.mSubject = PublishSubject.create().toSerialized();
     }
 
+    /**
+     * 使用了单利双重检查模式
+     *
+     */
     public static RxBus getInstance() {
-        return Holder.INSTANCE;
+        if (mRxBus == null) {
+            synchronized (RxBus.class) {
+                if (mRxBus == null) {
+                    mRxBus = new RxBus();
+                }
+            }
+        }
+        return mRxBus;
     }
 
     /**
@@ -44,9 +57,5 @@ public class RxBus {
      */
     public <T> Observable<T> toObservable(Class<T> eventType) {
         return mSubject.ofType(eventType);
-    }
-
-    private static class Holder {
-        static final RxBus INSTANCE = new RxBus();
     }
 }
