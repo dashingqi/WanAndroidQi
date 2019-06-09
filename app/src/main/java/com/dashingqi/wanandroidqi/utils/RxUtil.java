@@ -33,7 +33,9 @@ public class RxUtil {
      * @return ObservableTransformer
      */
     public static <T> ObservableTransformer<T, T> rxSchedulerHelper() {
+        //网络请求在子线程中
         return observable -> observable.subscribeOn(Schedulers.io())
+                //UI的更新切换到主线程中
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
@@ -65,6 +67,7 @@ public class RxUtil {
      * @return
      */
     private static <T> Observable<T> createObservable(T data) {
+        //创建一个Observable
         return Observable.create(emitter -> {
             try {
                 emitter.onNext(data);

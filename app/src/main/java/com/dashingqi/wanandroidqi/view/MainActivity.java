@@ -33,6 +33,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
 
     private BaseFragment[] mFragments = new BaseFragment[5];
     private int mPreFragmentFlag = 0;
+
     @Inject
     protected MainPresenter mainPresenter;
 

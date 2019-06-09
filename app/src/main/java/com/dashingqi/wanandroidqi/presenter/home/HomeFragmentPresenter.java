@@ -38,10 +38,15 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
     @Override
     public void loadBannerData(String param) {
         //执行加载BannerData
+        //compose是直接对当前的Observable进行操作的。
         addRcSubScribe(
+                //被观察者  getBannerData将会在Io线程发出 下文中的onNext将会在主线程中调用  [后台线程取数据，主线程显示]
                 mModel.getBannerData()
+                        //线程的切换
                         .compose(RxUtil.rxSchedulerHelper())
+                        //结果的处理
                         .compose(RxUtil.handleResult())
+                        //订阅观察者 做出反应。
                         .subscribeWith(new BaseObserver<List<BannerDataBean>>(mView, false, false) {
                             @Override
                             public void onNext(List<BannerDataBean> bannerDataBeans) {

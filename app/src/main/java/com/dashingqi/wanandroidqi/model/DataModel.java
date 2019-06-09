@@ -33,6 +33,7 @@ public class DataModel implements NetWorkHelper {
         mNetWorkHelper = netWorkHelper;
     }
 
+    @Override
     public Observable<BaseResponse<List<BannerDataBean>>> getBannerData() {
         return mNetWorkHelper.getBannerData();
     }

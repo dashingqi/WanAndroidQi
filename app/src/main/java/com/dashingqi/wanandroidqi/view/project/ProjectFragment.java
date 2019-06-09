@@ -44,12 +44,12 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectPresenter> imple
     @Override
     protected void initView() {
         //mProjectPresenter = new ProjectPresenter();
-        super.initView();
+       // super.initView();
     }
 
     @Override
     protected void loadData() {
-        mProjectPresenter.getProjectData();
+        //mProjectPresenter.getProjectData();
 
     }
 

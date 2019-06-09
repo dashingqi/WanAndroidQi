@@ -28,7 +28,8 @@ public class ApplicationQi extends Application {
         super.onCreate();
         mApp = this;
         instance = getApplicationContext();
-        mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(mApp)).build();
+        //mAppComponent.inject(this);
     }
 
     public static ApplicationQi getContext() {
@@ -36,6 +37,8 @@ public class ApplicationQi extends Application {
     }
 
     public static AppComponent getAppComponent() {
-        return mAppComponent;
+        if (mAppComponent != null)
+            return mAppComponent;
+        else return DaggerAppComponent.builder().appModule(new AppModule(mApp)).build();
     }
 }
