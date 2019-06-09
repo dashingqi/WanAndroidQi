@@ -124,4 +124,16 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
                 getHomeFragmentComponent(new HomeFragmentModule()).
                 inject(HomeFragment.this);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mBanner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mBanner.stopAutoPlay();
+    }
 }
