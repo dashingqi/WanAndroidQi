@@ -2,6 +2,7 @@ package com.dashingqi.wanandroidqi.di.component.activity;
 
 import com.dashingqi.wanandroidqi.di.component.AppComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.home.HomeFragmentComponent;
+import com.dashingqi.wanandroidqi.di.module.home.HomeFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.main.MainActivityModule;
 import com.dashingqi.wanandroidqi.di.scope.PreActivity;
 import com.dashingqi.wanandroidqi.model.home.HomeFragmentModel;
@@ -25,5 +26,5 @@ import dagger.Component;
 public interface MainActivityComponent {
     void inject(MainActivity mainActivity);
 
-    HomeFragmentComponent getHomeFragmentComponent(HomeFragmentModel homeFragmentModel);
+    HomeFragmentComponent getHomeFragmentComponent(HomeFragmentModule homeFragmentModel);
 }

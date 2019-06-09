@@ -3,7 +3,6 @@ package com.dashingqi.wanandroidqi.application;
 import android.app.Application;
 import android.content.Context;
 
-import com.dashingqi.wanandroidqi.BuildConfig;
 import com.dashingqi.wanandroidqi.di.component.AppComponent;
 import com.dashingqi.wanandroidqi.di.component.DaggerAppComponent;
 import com.dashingqi.wanandroidqi.di.module.AppModule;

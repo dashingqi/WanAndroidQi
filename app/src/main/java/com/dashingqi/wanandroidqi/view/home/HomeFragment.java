@@ -6,14 +6,19 @@ import android.widget.TextView;
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
-import com.dashingqi.wanandroidqi.model.home.HomeFragmentModel;
+import com.dashingqi.wanandroidqi.di.module.home.HomeFragmentModule;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
+import com.dashingqi.wanandroidqi.utils.image.BannerImageLoader;
 import com.dashingqi.wanandroidqi.view.MainActivity;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.BindView;
 
@@ -33,8 +38,23 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @BindView(R.id.mTvText)
     protected TextView mTvText;
 
+    @BindView(R.id.banner)
+    protected Banner mBanner;
+
     @Inject
     HomeFragmentPresenter homeFragmentPresenter;
+
+    @Inject
+    @Named("bannerTitles")
+    List<String> bannerTitles;
+
+    @Inject
+    @Named("bannerImages")
+    List<String> bannerImages;
+
+    @Inject
+    @Named("bannerUrls")
+    List<String> bannerUrls;
 
     @Override
     protected void initData() {
@@ -66,7 +86,20 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     public void showBannerData(List<BannerDataBean> bannerDataBeanList) {
+        for (BannerDataBean bannerDataBean : bannerDataBeanList) {
+            bannerTitles.add(bannerDataBean.getTitle());
+            bannerImages.add(bannerDataBean.getImagePath());
+            bannerUrls.add(bannerDataBean.getUrl());
+        }
 
+        mBanner.setImageLoader(new BannerImageLoader())
+                .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
+                .setImages(bannerImages)
+                .setBannerAnimation(Transformer.Default)
+                .setBannerTitles(bannerTitles)
+                .setIndicatorGravity(BannerConfig.RIGHT)
+                .setDelayTime(3000)
+                .start();
     }
 
     @Override
@@ -88,7 +121,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     protected void inject() {
         ((MainActivity) mActivity).
                 getComponent().
-                getHomeFragmentComponent(new HomeFragmentModel()).
+                getHomeFragmentComponent(new HomeFragmentModule()).
                 inject(HomeFragment.this);
     }
 }

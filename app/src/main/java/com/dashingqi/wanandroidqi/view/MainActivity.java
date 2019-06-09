@@ -139,6 +139,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter> implement
         mMainActivityComponent.inject(this);
 
 
+
     }
 
 

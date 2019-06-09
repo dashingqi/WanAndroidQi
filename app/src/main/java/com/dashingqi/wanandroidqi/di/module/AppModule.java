@@ -3,6 +3,7 @@ package com.dashingqi.wanandroidqi.di.module;
 import com.dashingqi.wanandroidqi.application.ApplicationQi;
 import com.dashingqi.wanandroidqi.common.Constant;
 import com.dashingqi.wanandroidqi.network.http.api.HomeApis;
+import com.dashingqi.wanandroidqi.network.interceptor.LogInterceptor;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -62,7 +63,7 @@ public class AppModule {
         builder.connectTimeout(10, TimeUnit.SECONDS);
         builder.readTimeout(20, TimeUnit.SECONDS);
         builder.writeTimeout(20, TimeUnit.SECONDS);
-
+        builder.addInterceptor(new LogInterceptor());
         return builder.build();
     }
 
