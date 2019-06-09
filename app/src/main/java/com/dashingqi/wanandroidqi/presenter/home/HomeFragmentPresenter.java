@@ -10,6 +10,7 @@ import com.dashingqi.wanandroidqi.model.DataModel;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.utils.RxBus;
 import com.dashingqi.wanandroidqi.utils.RxUtil;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
     }
 
     @Override
-    public void loadBannerData(String param) {
+    public void loadBannerData() {
         //执行加载BannerData
         //compose是直接对当前的Observable进行操作的。
         addRcSubScribe(
@@ -51,7 +52,8 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                             @Override
                             public void onNext(List<BannerDataBean> bannerDataBeans) {
                                 super.onNext(bannerDataBeans);
-                                Log.d(TAG, "BannerOnNext " + bannerDataBeans.size());
+                                Log.d(TAG, "size = " + bannerDataBeans.size());
+                                Logger.t("banner").d(bannerDataBeans);
                                 mView.showBannerData(bannerDataBeans);
                             }
                         })

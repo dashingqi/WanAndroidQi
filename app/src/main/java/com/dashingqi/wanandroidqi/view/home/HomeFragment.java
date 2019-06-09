@@ -54,7 +54,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     protected void loadData() {
 
-        mPresenter.loadBannerData("1");
+        mPresenter.loadBannerData();
 
     }
 

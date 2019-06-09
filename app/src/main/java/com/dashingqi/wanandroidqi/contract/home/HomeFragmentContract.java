@@ -35,7 +35,7 @@ public interface HomeFragmentContract {
 
     interface Presenter extends IPresenter<View> {
         //加载首页的banner数据
-        void loadBannerData(String param);
+        void loadBannerData();
 
         //加载首页数据
         void loadData();
