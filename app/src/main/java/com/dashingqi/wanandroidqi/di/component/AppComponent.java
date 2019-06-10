@@ -17,7 +17,7 @@ import dagger.Component;
  * @CreateDate: 2019-06-04 17:42
  * @UpdateUser: 更新者
  * @UpdateDate: 2019-06-04 17:42
- * @UpdateRemark:
+ * @UpdateRemark: 存放的都是公共的对象 生命周期和Application一样长
  * @Version: 1.0
  */
 @Singleton
