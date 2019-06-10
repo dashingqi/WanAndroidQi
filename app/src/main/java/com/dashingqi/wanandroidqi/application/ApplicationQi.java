@@ -6,6 +6,7 @@ import android.content.Context;
 import com.dashingqi.wanandroidqi.di.component.AppComponent;
 import com.dashingqi.wanandroidqi.di.component.DaggerAppComponent;
 import com.dashingqi.wanandroidqi.di.module.AppModule;
+import com.dashingqi.wanandroidqi.di.module.HttpModule;
 import com.dashingqi.wanandroidqi.utils.log.CustomLogCatStrategy;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -33,7 +34,11 @@ public class ApplicationQi extends Application {
         super.onCreate();
         mApp = this;
         instance = getApplicationContext();
-        mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(mApp)).build();
+        mAppComponent = DaggerAppComponent
+                .builder()
+                .appModule(new AppModule(mApp))
+                .httpModule(new HttpModule())
+                .build();
         //配置Logger
         configLogger();
     }
