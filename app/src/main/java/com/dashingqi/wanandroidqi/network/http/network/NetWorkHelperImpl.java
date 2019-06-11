@@ -27,6 +27,7 @@ public class NetWorkHelperImpl implements NetWorkHelper {
 
 
     @Inject
+    //这个HomeApis在HttpModule中 有使用@Provides来提供获取
     public NetWorkHelperImpl(HomeApis homeApis) {
         mHomeApis = homeApis;
 

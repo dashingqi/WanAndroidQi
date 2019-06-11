@@ -29,6 +29,8 @@ public class DataModel implements NetWorkHelper {
     private NetWorkHelper mNetWorkHelper;
 
     @Inject
+    //该DataModel在AppComponent有提供方法 需要使用@Inject 该DataModule
+    //带有参数 如果这个参数不能被@Inject标注，可以在@Moudle使用@Provides进行提供
     public DataModel(NetWorkHelperImpl netWorkHelper) {
         mNetWorkHelper = netWorkHelper;
     }
