@@ -27,7 +27,7 @@ public class RxUtil {
     }
 
     /**
-     * 切换线程
+     * 切换线程避免每次请求的时候，子线程与主线线程的切换都要写一遍。
      *
      * @param <T> 指定的泛型类型
      * @return ObservableTransformer
@@ -70,6 +70,7 @@ public class RxUtil {
         //创建一个Observable
         return Observable.create(emitter -> {
             try {
+                //此时调用了观察者的onNext
                 emitter.onNext(data);
                 emitter.onComplete();
 
