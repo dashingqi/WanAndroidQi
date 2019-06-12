@@ -42,7 +42,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     protected Banner mBanner;
 
     @Inject
-    HomeFragmentPresenter homeFragmentPresenter;
+    HomeFragmentPresenter mPresenter;
 
     @Inject
     @Named("bannerTitles")
@@ -63,7 +63,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     public HomeFragmentPresenter getPresenter() {
-        return homeFragmentPresenter;
+        return mPresenter;
     }
 
     @Override
@@ -75,6 +75,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     protected void loadData() {
 
         mPresenter.loadBannerData();
+        mPresenter.loadData(0);
 
     }
 
@@ -104,6 +105,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     public void showData() {
+
 
     }
 

@@ -1,22 +1,13 @@
 package com.dashingqi.wanandroidqi.di.module;
 
 import com.dashingqi.wanandroidqi.application.ApplicationQi;
-import com.dashingqi.wanandroidqi.common.Constant;
-import com.dashingqi.wanandroidqi.network.http.api.HomeApis;
-import com.dashingqi.wanandroidqi.network.interceptor.LogInterceptor;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Cache;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 /**
  * @ProjectName: WanAndroidQi

@@ -38,10 +38,10 @@ public interface HomeFragmentContract {
         void loadBannerData();
 
         //加载首页数据
-        void loadData();
+        void loadData(int pageNum);
 
         //加载更多数据
-        void loadMoreData();
+        void loadMoreData( int pageNum);
 
     }
 }

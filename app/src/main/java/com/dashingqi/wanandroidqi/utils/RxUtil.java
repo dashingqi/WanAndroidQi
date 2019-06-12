@@ -47,6 +47,7 @@ public class RxUtil {
      */
     public static <T> ObservableTransformer<BaseResponse<T>, T> handleResult() {
         return upstream ->
+                //flatMap是将数据集转化成Observable数据集
                 upstream.flatMap((Function<BaseResponse<T>, Observable<T>>) baseResponse ->
                 {
                     //当请求成功的时候 == 0 表示请求成功
