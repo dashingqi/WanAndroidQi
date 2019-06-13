@@ -75,16 +75,17 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
     public void loadData(int pageNum) {
         addRcSubScribe(
                 mModel.getHomeArticles(pageNum)
-                .compose(RxUtil.rxSchedulerHelper())
-                .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<ArticlesBean>(mView,false,false){
-                    @Override
-                    public void onNext(ArticlesBean articlesBean) {
-                        super.onNext(articlesBean);
-                        Log.d("total = ",articlesBean.getTotal()+"");
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .compose(RxUtil.handleResult())
+                        .subscribeWith(new BaseObserver<ArticlesBean>(mView, false, false) {
+                            @Override
+                            public void onNext(ArticlesBean articlesBean) {
+                                super.onNext(articlesBean);
+                                mView.showData(articlesBean.getDatas());
+                                Log.d("total = ", articlesBean.getTotal() + "");
 
-                    }
-                })
+                            }
+                        })
         );
     }
 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/dp_15"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingEnd="@dimen/dp_15">
+
+    <TextView
+        android:id="@+id/mTvAuthorArticleItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="作者"
+        android:textColor="@color/colorNavNormal"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/mTvDateArticleItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:paddingEnd="@dimen/dp_10"
+        android:text="2019/6/14"
+        android:textColor="@color/colorNavNormal"
+        android:textSize="@dimen/sp_12" />
+
+    <TextView
+        android:id="@+id/mTvTitleArticleItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mTvAuthorArticleItem"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_10"
+        android:text="从Activity创建到View呈现中间发生什么？"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/mTvTypeArticleItem"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_45"
+        android:layout_below="@+id/mTvTitleArticleItem"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@+id/mIvArticleCollect"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/dp_10"
+        android:text="类型"
+        android:textSize="@dimen/sp_12" />
+
+    <ImageView
+        android:id="@+id/mIvArticleCollect"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_45"
+        android:layout_below="@+id/mTvTitleArticleItem"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/dp_10"
+        android:src="@drawable/icon_love"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.1"
+        android:layout_below="@+id/mIvArticleCollect"
+        android:background="@color/colorPrimary" />
+
+</RelativeLayout>

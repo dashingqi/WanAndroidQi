@@ -1,12 +1,18 @@
 package com.dashingqi.wanandroidqi.view.home;
 
 
-import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.dashingqi.wanandroidqi.R;
+import com.dashingqi.wanandroidqi.adapter.ArticlesAdapter;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
 import com.dashingqi.wanandroidqi.di.module.home.HomeFragmentModule;
+import com.dashingqi.wanandroidqi.network.entity.home.ArticleBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
 import com.dashingqi.wanandroidqi.utils.image.BannerImageLoader;
@@ -34,12 +40,11 @@ import butterknife.BindView;
  * @Version: 1.0
  */
 public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> implements HomeFragmentContract.View {
+    private static final String TAG = "HomeFragment";
 
-    @BindView(R.id.mTvText)
-    protected TextView mTvText;
 
-    @BindView(R.id.banner)
-    protected Banner mBanner;
+    @BindView(R.id.mRecyclerView)
+    protected RecyclerView mRecyclerView;
 
     @Inject
     HomeFragmentPresenter mPresenter;
@@ -56,6 +61,15 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Named("bannerUrls")
     List<String> bannerUrls;
 
+    @Inject
+    List<ArticleBean> articleList;
+
+    @Inject
+    ArticlesAdapter mArticleAdapter;
+    @Inject
+    LinearLayoutManager mLinearLayoutManager;
+    private Banner mBanner;
+
     @Override
     protected void initData() {
 
@@ -69,6 +83,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     protected void initView() {
         super.initView();
+        initRecyclerView();
     }
 
     @Override
@@ -104,8 +119,10 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     }
 
     @Override
-    public void showData() {
-
+    public void showData(List<ArticleBean> data) {
+        Log.d(TAG, "size = " + data.size());
+        articleList.addAll(data);
+        mArticleAdapter.notifyDataSetChanged();
 
     }
 
@@ -137,5 +154,16 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     public void onStop() {
         super.onStop();
         mBanner.stopAutoPlay();
+    }
+
+    /**
+     * 初始化RecyclerView
+     */
+    private void initRecyclerView() {
+        View mBannerLayout = LayoutInflater.from(mActivity).inflate(R.layout.home_banner_layout, null);
+        mBanner = mBannerLayout.findViewById(R.id.banner);
+        mArticleAdapter.addHeaderView(mBannerLayout);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setAdapter(mArticleAdapter);
     }
 }
