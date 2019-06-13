@@ -61,7 +61,7 @@
         android:layout_below="@+id/mTvTitleArticleItem"
         android:layout_alignParentEnd="true"
         android:padding="@dimen/dp_10"
-        android:src="@drawable/icon_love"
+        android:src="@drawable/select_collect_article"
 
         />
 

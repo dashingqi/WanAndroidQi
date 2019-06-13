@@ -31,6 +31,11 @@ public class ArticlesAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolde
                 .setText(R.id.mTvTitleArticleItem, item.getTitle())
                 .setText(R.id.mTvTypeArticleItem, item.getSuperChapterName())
                 .addOnClickListener(R.id.mIvArticleCollect);
+        if (item.isCollect()) {
+            helper.setChecked(R.id.mIvArticleCollect, true);
+        } else {
+            helper.setChecked(R.id.mIvArticleCollect, false);
+        }
 
     }
 }
