@@ -3,6 +3,7 @@ package com.dashingqi.wanandroidqi.model;
 import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
 import com.dashingqi.wanandroidqi.network.http.network.NetWorkHelper;
 import com.dashingqi.wanandroidqi.network.http.network.NetWorkHelperImpl;
 
@@ -43,6 +44,11 @@ public class DataModel implements NetWorkHelper {
     @Override
     public Observable<BaseResponse<ArticlesBean>> getHomeArticles(int pageNum) {
         return mNetWorkHelper.getHomeArticles(pageNum);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<WxTabData>>> getWxTabListData() {
+        return mNetWorkHelper.getWxTabListData();
     }
 
 }

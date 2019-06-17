@@ -2,6 +2,7 @@ package com.dashingqi.wanandroidqi.di.module;
 
 import com.dashingqi.wanandroidqi.common.Constant;
 import com.dashingqi.wanandroidqi.network.http.api.HomeApis;
+import com.dashingqi.wanandroidqi.network.http.api.WxApis;
 import com.dashingqi.wanandroidqi.network.interceptor.LogInterceptor;
 
 import java.io.File;
@@ -25,7 +26,7 @@ public class HttpModule {
 
     @Provides
     @Singleton
-    OkHttpClient.Builder provideOkHttpClientBuilder(){
+    OkHttpClient.Builder provideOkHttpClientBuilder() {
         return new OkHttpClient.Builder();
     }
 
@@ -60,9 +61,14 @@ public class HttpModule {
 
     @Provides
     @Singleton
-    HomeApis provideHomeApi(Retrofit retrofit){
+    HomeApis provideHomeApi(Retrofit retrofit) {
         return retrofit.create(HomeApis.class);
+    }
 
+    @Provides
+    @Singleton
+    WxApis provideWxApi(Retrofit retrofit) {
+        return retrofit.create(WxApis.class);
     }
 
 }

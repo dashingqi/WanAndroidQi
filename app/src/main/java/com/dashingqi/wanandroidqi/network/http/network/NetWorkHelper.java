@@ -3,6 +3,7 @@ package com.dashingqi.wanandroidqi.network.http.network;
 import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
 
 import java.util.List;
 
@@ -33,4 +34,7 @@ public interface NetWorkHelper {
 
     //获取到首页文章
     Observable<BaseResponse<ArticlesBean>> getHomeArticles(int pageNum);
+
+    //获取到微信公众号tab数据
+    Observable<BaseResponse<List<WxTabData>>> getWxTabListData();
 }

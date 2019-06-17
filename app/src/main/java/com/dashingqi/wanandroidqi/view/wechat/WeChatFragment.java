@@ -5,6 +5,15 @@ import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.fragment.BaseFragment;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
 import com.dashingqi.wanandroidqi.base.presenter.IPresenter;
+import com.dashingqi.wanandroidqi.contract.wx.WxFragmentContact;
+import com.dashingqi.wanandroidqi.di.module.wx.WxFragmentModule;
+import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
+import com.dashingqi.wanandroidqi.presenter.wx.WxFragmentPresenter;
+import com.dashingqi.wanandroidqi.view.MainActivity;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @ProjectName: WanAndroidQi
@@ -17,7 +26,11 @@ import com.dashingqi.wanandroidqi.base.presenter.IPresenter;
  * @UpdateRemark:
  * @Version: 1.0
  */
-public class WeChatFragment extends BaseLoadingFragment {
+public class WeChatFragment extends BaseLoadingFragment implements WxFragmentContact.View {
+
+    @Inject
+    WxFragmentPresenter mWxFragmentPresenter;
+
     @Override
     protected void initData() {
 
@@ -25,7 +38,7 @@ public class WeChatFragment extends BaseLoadingFragment {
 
     @Override
     public IPresenter getPresenter() {
-        return null;
+        return mWxFragmentPresenter;
     }
 
     @Override
@@ -35,6 +48,8 @@ public class WeChatFragment extends BaseLoadingFragment {
 
     @Override
     protected void loadData() {
+        //获取到微信公众号tab数据
+        mWxFragmentPresenter.getWxTabData();
 
     }
 
@@ -45,6 +60,14 @@ public class WeChatFragment extends BaseLoadingFragment {
 
     @Override
     protected void inject() {
+        ((MainActivity) mActivity)
+                .getComponent()
+                .getWxFragmentComponent(new WxFragmentModule())
+                .inject(this);
+    }
+
+    @Override
+    public void showWxTab(List<WxTabData> dataList) {
 
     }
 }

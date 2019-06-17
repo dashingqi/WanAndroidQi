@@ -3,7 +3,9 @@ package com.dashingqi.wanandroidqi.network.http.network;
 import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
 import com.dashingqi.wanandroidqi.network.http.api.HomeApis;
+import com.dashingqi.wanandroidqi.network.http.api.WxApis;
 
 import java.util.List;
 
@@ -24,13 +26,14 @@ import io.reactivex.Observable;
  */
 public class NetWorkHelperImpl implements NetWorkHelper {
     private HomeApis mHomeApis;
+    private WxApis mWxApis;
 
 
     @Inject
     //这个HomeApis在HttpModule中 有使用@Provides来提供获取
-    public NetWorkHelperImpl(HomeApis homeApis) {
+    public NetWorkHelperImpl(HomeApis homeApis, WxApis wxApis) {
         mHomeApis = homeApis;
-
+        mWxApis = wxApis;
     }
 
     /**
@@ -52,5 +55,10 @@ public class NetWorkHelperImpl implements NetWorkHelper {
     @Override
     public Observable<BaseResponse<ArticlesBean>> getHomeArticles(int pageNum) {
         return mHomeApis.getArticles(pageNum);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<WxTabData>>> getWxTabListData() {
+        return mWxApis.getWxTabData();
     }
 }

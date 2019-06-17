@@ -2,8 +2,10 @@ package com.dashingqi.wanandroidqi.di.component.activity;
 
 import com.dashingqi.wanandroidqi.di.component.AppComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.home.HomeFragmentComponent;
+import com.dashingqi.wanandroidqi.di.component.fragment.wx.WxFragmentComponent;
 import com.dashingqi.wanandroidqi.di.module.home.HomeFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.main.MainActivityModule;
+import com.dashingqi.wanandroidqi.di.module.wx.WxFragmentModule;
 import com.dashingqi.wanandroidqi.di.scope.PreActivity;
 import com.dashingqi.wanandroidqi.model.home.HomeFragmentModel;
 import com.dashingqi.wanandroidqi.view.MainActivity;
@@ -27,4 +29,6 @@ public interface MainActivityComponent {
     void inject(MainActivity mainActivity);
 
     HomeFragmentComponent getHomeFragmentComponent(HomeFragmentModule homeFragmentModel);
+
+    WxFragmentComponent getWxFragmentComponent(WxFragmentModule wxFragmentModule);
 }
