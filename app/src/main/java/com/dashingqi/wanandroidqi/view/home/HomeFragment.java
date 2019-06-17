@@ -1,6 +1,7 @@
 package com.dashingqi.wanandroidqi.view.home;
 
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,10 @@ import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
 import com.dashingqi.wanandroidqi.utils.image.BannerImageLoader;
 import com.dashingqi.wanandroidqi.view.MainActivity;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -42,6 +47,8 @@ import butterknife.BindView;
 public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> implements HomeFragmentContract.View {
     private static final String TAG = "HomeFragment";
 
+    @BindView(R.id.mSmartRefreshLayout)
+    protected SmartRefreshLayout mSmartRefreshLayout;
 
     @BindView(R.id.mRecyclerView)
     protected RecyclerView mRecyclerView;
@@ -70,6 +77,9 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     LinearLayoutManager mLinearLayoutManager;
     private Banner mBanner;
 
+    private int pageNum = 0;
+    private boolean isRefresh = false;
+
     @Override
     protected void initData() {
 
@@ -84,11 +94,34 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     protected void initView() {
         super.initView();
         initRecyclerView();
+        initPullToRefresh();
+    }
+
+    private void initPullToRefresh() {
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                Log.d(TAG, "onRefresh: ");
+                pageNum = 0;
+                isRefresh = true;
+                mPresenter.loadMoreData(pageNum);
+
+            }
+        });
+
+        mSmartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                Log.d(TAG, "onLoadMore: ");
+                pageNum++;
+                isRefresh = false;
+                mPresenter.loadMoreData(pageNum);
+            }
+        });
     }
 
     @Override
     protected void loadData() {
-
         mPresenter.loadBannerData();
         mPresenter.loadData(0);
 
@@ -127,7 +160,23 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     }
 
     @Override
-    public void showMoreData() {
+    public void showMoreData(List<ArticleBean> data) {
+        if (isRefresh) {
+            if (articleList != null && articleList.size() > 0) {
+                articleList.clear();
+            }
+            //结束下拉加载
+            mSmartRefreshLayout.finishRefresh();
+        } else {
+            if (articleList.size() == 0)
+                mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
+            else
+                mSmartRefreshLayout.finishLoadMore(4000);
+        }
+
+        articleList.addAll(data);
+        mArticleAdapter.notifyDataSetChanged();
+
 
     }
 

@@ -7,6 +7,7 @@ import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
 import com.dashingqi.wanandroidqi.event.AutoRefreshEvent;
 import com.dashingqi.wanandroidqi.model.DataModel;
+import com.dashingqi.wanandroidqi.network.entity.home.ArticleBean;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.utils.RxBus;
@@ -91,7 +92,16 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
 
     @Override
     public void loadMoreData(int pageNum) {
-
+        addRcSubScribe(mModel.getHomeArticles(pageNum)
+                .compose(RxUtil.rxSchedulerHelper())
+                .compose(RxUtil.handleResult())
+                .subscribeWith(new BaseObserver<ArticlesBean>(mView, false, false) {
+                    @Override
+                    public void onNext(ArticlesBean articlesBean) {
+                        super.onNext(articlesBean);
+                        mView.showMoreData(articlesBean.getDatas());
+                    }
+                }));
     }
 
 

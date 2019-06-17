@@ -27,7 +27,7 @@ public interface HomeFragmentContract {
         void showData(List<ArticleBean> data);
 
         //展示更多数据
-        void showMoreData();
+        void showMoreData(List<ArticleBean> data);
 
         //下拉刷新加载数据
         void autoRefresh();
@@ -42,7 +42,7 @@ public interface HomeFragmentContract {
         void loadData(int pageNum);
 
         //加载更多数据
-        void loadMoreData( int pageNum);
+        void loadMoreData(int pageNum);
 
     }
 }

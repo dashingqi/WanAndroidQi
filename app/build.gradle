@@ -55,4 +55,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     //BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
 }

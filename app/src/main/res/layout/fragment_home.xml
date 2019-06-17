@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mRecyclerView"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/mSmartRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_article_list" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_article_list" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>
