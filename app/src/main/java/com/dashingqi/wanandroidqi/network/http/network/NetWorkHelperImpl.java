@@ -57,6 +57,10 @@ public class NetWorkHelperImpl implements NetWorkHelper {
         return mHomeApis.getArticles(pageNum);
     }
 
+    /**
+     * 获取到微信公众号tab数据
+     * @return
+     */
     @Override
     public Observable<BaseResponse<List<WxTabData>>> getWxTabListData() {
         return mWxApis.getWxTabData();

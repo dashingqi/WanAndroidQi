@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ import butterknife.Unbinder;
  * @UpdateRemark:
  * @Version: 1.0
  */
-public abstract class BaseFragment extends Fragment implements BaseView {
+public abstract class BaseFragment extends BaseLazyFragment implements BaseView {
 
     protected Activity mActivity;
     private View mView;
@@ -70,7 +69,6 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         super.onViewCreated(view, savedInstanceState);
         initView();
         initData();
-        loadData();
 
     }
 
@@ -85,5 +83,10 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public void showToast(String msg) {
         Toast.makeText(mActivity, "msg", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void lazyLoadData() {
+        loadData();
     }
 }

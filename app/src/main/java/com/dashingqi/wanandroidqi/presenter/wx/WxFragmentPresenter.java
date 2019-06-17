@@ -33,8 +33,7 @@ public class WxFragmentPresenter extends BasePresenter<WxFragmentContact.View> i
                             @Override
                             public void onNext(List<WxTabData> wxTabData) {
                                 super.onNext(wxTabData);
-                                Log.d(TAG, "onNext: " + wxTabData.size());
-                                mView.showWxTab(wxTabData);
+                                Log.d(TAG, "size = " + wxTabData.size());
                             }
                         })
         );
