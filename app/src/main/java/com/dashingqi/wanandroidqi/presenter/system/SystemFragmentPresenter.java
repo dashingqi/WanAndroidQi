@@ -34,6 +34,7 @@ public class SystemFragmentPresenter extends BasePresenter<SystemFragmentContrac
                             public void onNext(List<SystemDataBean> systemDataBeans) {
                                 super.onNext(systemDataBeans);
                                 Log.d(TAG, "size = " + systemDataBeans.size());
+                                mView.showSystemData(systemDataBeans);
                             }
                         })
         );
