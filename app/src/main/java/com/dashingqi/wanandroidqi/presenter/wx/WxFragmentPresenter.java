@@ -1,7 +1,5 @@
 package com.dashingqi.wanandroidqi.presenter.wx;
 
-import android.util.Log;
-
 import com.dashingqi.wanandroidqi.base.Observer.BaseObserver;
 import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
 import com.dashingqi.wanandroidqi.contract.wx.WxFragmentContact;
@@ -33,7 +31,6 @@ public class WxFragmentPresenter extends BasePresenter<WxFragmentContact.View> i
                             @Override
                             public void onNext(List<WxTabData> wxTabData) {
                                 super.onNext(wxTabData);
-                                Log.d(TAG, wxTabData.size() + " size");
                                 mView.showWxTab(wxTabData);
                             }
                         })

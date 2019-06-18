@@ -3,7 +3,7 @@ package com.dashingqi.wanandroidqi.view.system;
 
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
-import com.dashingqi.wanandroidqi.contract.system.SystemContract;
+import com.dashingqi.wanandroidqi.contract.system.SystemFragmentContract;
 import com.dashingqi.wanandroidqi.di.module.system.SystemFragmentModule;
 import com.dashingqi.wanandroidqi.presenter.system.SystemFragmentPresenter;
 import com.dashingqi.wanandroidqi.view.MainActivity;
@@ -21,7 +21,7 @@ import javax.inject.Inject;
  * @UpdateRemark:
  * @Version: 1.0
  */
-public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter> implements SystemContract.View {
+public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter> implements SystemFragmentContract.View {
 
     @Inject
     protected SystemFragmentPresenter mSystemFragmentPresenter;
@@ -38,6 +38,7 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
 
     @Override
     protected void initView() {
+        super.initView();
 
     }
 

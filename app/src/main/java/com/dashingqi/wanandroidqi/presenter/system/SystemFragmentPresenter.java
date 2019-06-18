@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.dashingqi.wanandroidqi.base.Observer.BaseObserver;
 import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
-import com.dashingqi.wanandroidqi.contract.system.SystemContract;
+import com.dashingqi.wanandroidqi.contract.system.SystemFragmentContract;
 import com.dashingqi.wanandroidqi.model.DataModel;
 import com.dashingqi.wanandroidqi.network.entity.system.SystemDataBean;
 import com.dashingqi.wanandroidqi.utils.RxUtil;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class SystemFragmentPresenter extends BasePresenter<SystemContract.View> implements SystemContract.Presenter {
+public class SystemFragmentPresenter extends BasePresenter<SystemFragmentContract.View> implements SystemFragmentContract.Presenter {
     private static final String TAG = "SystemFragmentPresenter";
 
     @Inject

@@ -53,20 +53,9 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                             @Override
                             public void onNext(List<BannerDataBean> bannerDataBeans) {
                                 super.onNext(bannerDataBeans);
-                                Log.d(TAG, "size = " + bannerDataBeans.size());
-                                Logger.t("banner").d(bannerDataBeans);
                                 mView.showBannerData(bannerDataBeans);
                             }
                         })
-        );
-
-    }
-
-    @Override
-    public void subScribeEvent() {
-        addRxSubScribe(RxBus.getInstance().toObservable(AutoRefreshEvent.class)
-                .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
-                .subscribe(loginEvent -> mView.autoRefresh())
         );
 
     }
@@ -82,8 +71,6 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                             public void onNext(ArticlesBean articlesBean) {
                                 super.onNext(articlesBean);
                                 mView.showData(articlesBean.getDatas());
-                                Log.d("total = ", articlesBean.getTotal() + "");
-
                             }
                         })
         );
@@ -102,6 +89,4 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                     }
                 }));
     }
-
-
 }

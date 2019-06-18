@@ -74,7 +74,6 @@ public class RxUtil {
                 //此时调用了观察者的onNext
                 emitter.onNext(data);
                 emitter.onComplete();
-
             } catch (Exception e) {
                 emitter.onError(e);
             }

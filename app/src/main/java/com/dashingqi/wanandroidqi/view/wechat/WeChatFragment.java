@@ -66,6 +66,7 @@ public class WeChatFragment extends BaseLoadingFragment<WxFragmentPresenter> imp
 
     @Override
     protected void initView() {
+        super.initView();
 
     }
 
