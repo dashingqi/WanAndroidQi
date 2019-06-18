@@ -2,14 +2,15 @@ package com.dashingqi.wanandroidqi.di.component.activity;
 
 import com.dashingqi.wanandroidqi.di.component.AppComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.home.HomeFragmentComponent;
+import com.dashingqi.wanandroidqi.di.component.fragment.project.ProjectFragmentComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.system.SystemFragmentComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.wx.WxFragmentComponent;
+import com.dashingqi.wanandroidqi.di.module.project.ProjectFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.home.HomeFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.main.MainActivityModule;
 import com.dashingqi.wanandroidqi.di.module.system.SystemFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.wx.WxFragmentModule;
 import com.dashingqi.wanandroidqi.di.scope.PreActivity;
-import com.dashingqi.wanandroidqi.model.home.HomeFragmentModel;
 import com.dashingqi.wanandroidqi.view.MainActivity;
 
 import dagger.Component;
@@ -35,4 +36,6 @@ public interface MainActivityComponent {
     WxFragmentComponent getWxFragmentComponent(WxFragmentModule wxFragmentModule);
 
     SystemFragmentComponent getSystemFragmentComponent(SystemFragmentModule systemFragmentModule);
+
+    ProjectFragmentComponent getProjectFragmentComponent(ProjectFragmentModule projectFragmentModule);
 }

@@ -14,6 +14,7 @@ import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
 import com.dashingqi.wanandroidqi.presenter.wx.WxFragmentPresenter;
 import com.dashingqi.wanandroidqi.view.MainActivity;
 import com.dashingqi.wanandroidqi.view.project.ProjectFragment;
+import com.dashingqi.wanandroidqi.view.setting.SettingFragment;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.List;
@@ -98,7 +99,7 @@ public class WeChatFragment extends BaseLoadingFragment<WxFragmentPresenter> imp
         Log.d(TAG, "showWxTab:names size " + wxTabNames.size());
 
         for (int i = 0; i < wxTabNames.size(); i++) {
-            wxTabFragments.add(new ProjectFragment());
+            wxTabFragments.add(new SettingFragment());
         }
 
         Log.d(TAG, "showWxTab: fragments size" + wxTabFragments.size());

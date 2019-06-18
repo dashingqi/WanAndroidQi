@@ -1,15 +1,25 @@
 package com.dashingqi.wanandroidqi.view.project;
 
 
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
 import com.dashingqi.wanandroidqi.R;
-import com.dashingqi.wanandroidqi.base.fragment.BaseFragment;
+import com.dashingqi.wanandroidqi.adapter.TabAdapter;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
-import com.dashingqi.wanandroidqi.base.presenter.IPresenter;
 import com.dashingqi.wanandroidqi.contract.project.ProjectContract;
-import com.dashingqi.wanandroidqi.presenter.main.MainPresenter;
+import com.dashingqi.wanandroidqi.di.module.project.ProjectFragmentModule;
+import com.dashingqi.wanandroidqi.network.entity.project.ProjectTabBean;
 import com.dashingqi.wanandroidqi.presenter.project.ProjectPresenter;
+import com.dashingqi.wanandroidqi.view.MainActivity;
+import com.dashingqi.wanandroidqi.view.setting.SettingFragment;
+import com.flyco.tablayout.SlidingTabLayout;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.BindView;
 
@@ -26,10 +36,22 @@ import butterknife.BindView;
  */
 public class ProjectFragment extends BaseLoadingFragment<ProjectPresenter> implements ProjectContract.View {
 
-    @BindView(R.id.mTvText)
-    protected TextView mTvText;
+    @BindView(R.id.mProjectViewPager)
+    protected ViewPager mViewPager;
 
-    private ProjectPresenter mProjectPresenter;
+    @BindView(R.id.mSlidingTabLayout)
+    protected SlidingTabLayout mSlidingTabLayout;
+
+    @Inject
+    protected ProjectPresenter mProjectPresenter;
+
+    @Inject
+    @Named("ProjectTabName")
+    protected List<String> mProjectNameList;
+
+    @Inject
+    @Named("ProjectTabFragment")
+    protected List<Fragment> mProjectTabFragment;
 
     @Override
     protected void initData() {
@@ -43,14 +65,12 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectPresenter> imple
 
     @Override
     protected void initView() {
-        //mProjectPresenter = new ProjectPresenter();
-       // super.initView();
+        super.initView();
     }
 
     @Override
     protected void loadData() {
-        //mProjectPresenter.getProjectData();
-
+        mProjectPresenter.getProjectTabData();
     }
 
     @Override
@@ -60,12 +80,31 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectPresenter> imple
 
     @Override
     public void showProjectData(String data) {
-        mTvText.setText(data);
 
+    }
+
+    /**
+     * 展示Tab数据
+     */
+    @Override
+    public void showProjectTabData(List<ProjectTabBean> data) {
+        for (ProjectTabBean tabBean : data) {
+            mProjectNameList.add(tabBean.getName());
+        }
+        for (int i = 0; i < mProjectNameList.size(); i++) {
+            mProjectTabFragment.add(new SettingFragment());
+        }
+
+        TabAdapter tabAdapter = new TabAdapter(getChildFragmentManager(), mProjectNameList, mProjectTabFragment);
+        mViewPager.setAdapter(tabAdapter);
+        mSlidingTabLayout.setViewPager(mViewPager);
     }
 
     @Override
     protected void inject() {
-
+        ((MainActivity) mActivity)
+                .getComponent()
+                .getProjectFragmentComponent(new ProjectFragmentModule())
+                .inject(this);
     }
 }

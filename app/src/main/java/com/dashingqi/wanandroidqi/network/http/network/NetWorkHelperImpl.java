@@ -3,9 +3,11 @@ package com.dashingqi.wanandroidqi.network.http.network;
 import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+import com.dashingqi.wanandroidqi.network.entity.project.ProjectTabBean;
 import com.dashingqi.wanandroidqi.network.entity.system.SystemDataBean;
 import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
 import com.dashingqi.wanandroidqi.network.http.api.HomeApis;
+import com.dashingqi.wanandroidqi.network.http.api.ProjectApis;
 import com.dashingqi.wanandroidqi.network.http.api.SystemApis;
 import com.dashingqi.wanandroidqi.network.http.api.WxApis;
 
@@ -30,14 +32,16 @@ public class NetWorkHelperImpl implements NetWorkHelper {
     private HomeApis mHomeApis;
     private WxApis mWxApis;
     private SystemApis mSystemApis;
+    private ProjectApis mProjectApis;
 
 
     @Inject
     //这个HomeApis在HttpModule中 有使用@Provides来提供获取
-    public NetWorkHelperImpl(HomeApis homeApis, WxApis wxApis, SystemApis systemApis) {
+    public NetWorkHelperImpl(HomeApis homeApis, WxApis wxApis, SystemApis systemApis, ProjectApis projectApis) {
         mHomeApis = homeApis;
         mWxApis = wxApis;
         mSystemApis = systemApis;
+        mProjectApis = projectApis;
     }
 
     /**
@@ -79,5 +83,10 @@ public class NetWorkHelperImpl implements NetWorkHelper {
     @Override
     public Observable<BaseResponse<List<SystemDataBean>>> getSystemData() {
         return mSystemApis.getSystemData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<ProjectTabBean>>> getProjectTabData() {
+        return mProjectApis.getProjectTabBean();
     }
 }

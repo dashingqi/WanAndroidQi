@@ -2,6 +2,9 @@ package com.dashingqi.wanandroidqi.contract.project;
 
 import com.dashingqi.wanandroidqi.base.presenter.IPresenter;
 import com.dashingqi.wanandroidqi.base.view.BaseView;
+import com.dashingqi.wanandroidqi.network.entity.project.ProjectTabBean;
+
+import java.util.List;
 
 /**
  * @ProjectName: WanAndroidQi
@@ -18,11 +21,16 @@ public interface ProjectContract {
 
     interface View extends BaseView {
         void showProjectData(String data);
+
+        void showProjectTabData(List<ProjectTabBean> data);
     }
 
     interface Presenter extends IPresenter<View> {
 
         void getProjectData();
+
+        void getProjectTabData();
+
 
     }
 }
