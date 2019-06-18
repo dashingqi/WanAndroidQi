@@ -2,6 +2,7 @@ package com.dashingqi.wanandroidqi.di.module;
 
 import com.dashingqi.wanandroidqi.common.Constant;
 import com.dashingqi.wanandroidqi.network.http.api.HomeApis;
+import com.dashingqi.wanandroidqi.network.http.api.SystemApis;
 import com.dashingqi.wanandroidqi.network.http.api.WxApis;
 import com.dashingqi.wanandroidqi.network.interceptor.LogInterceptor;
 
@@ -69,6 +70,12 @@ public class HttpModule {
     @Singleton
     WxApis provideWxApi(Retrofit retrofit) {
         return retrofit.create(WxApis.class);
+    }
+
+    @Provides
+    @Singleton
+    SystemApis provideSystemApi(Retrofit retrofit) {
+        return retrofit.create(SystemApis.class);
     }
 
 }

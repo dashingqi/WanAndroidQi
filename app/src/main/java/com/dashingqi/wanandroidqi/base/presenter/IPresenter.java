@@ -42,7 +42,7 @@ public interface IPresenter<V extends BaseView> {
      *
      * @param disposable
      */
-    void addRcSubScribe(Disposable disposable);
+    void addRxSubScribe(Disposable disposable);
 
     /**
      * 订阅事件

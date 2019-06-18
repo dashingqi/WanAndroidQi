@@ -7,7 +7,6 @@ import com.dashingqi.wanandroidqi.base.presenter.BasePresenter;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
 import com.dashingqi.wanandroidqi.event.AutoRefreshEvent;
 import com.dashingqi.wanandroidqi.model.DataModel;
-import com.dashingqi.wanandroidqi.network.entity.home.ArticleBean;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.utils.RxBus;
@@ -42,7 +41,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
     public void loadBannerData() {
         //执行加载BannerData
         //compose是直接对当前的Observable进行操作的。
-        addRcSubScribe(
+        addRxSubScribe(
                 //被观察者  getBannerData将会在Io线程发出 下文中的onNext将会在主线程中调用  [后台线程取数据，主线程显示]
                 mModel.getBannerData()
                         //线程的切换
@@ -65,7 +64,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
 
     @Override
     public void subScribeEvent() {
-        addRcSubScribe(RxBus.getInstance().toObservable(AutoRefreshEvent.class)
+        addRxSubScribe(RxBus.getInstance().toObservable(AutoRefreshEvent.class)
                 .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
                 .subscribe(loginEvent -> mView.autoRefresh())
         );
@@ -74,7 +73,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
 
     @Override
     public void loadData(int pageNum) {
-        addRcSubScribe(
+        addRxSubScribe(
                 mModel.getHomeArticles(pageNum)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
@@ -92,7 +91,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
 
     @Override
     public void loadMoreData(int pageNum) {
-        addRcSubScribe(mModel.getHomeArticles(pageNum)
+        addRxSubScribe(mModel.getHomeArticles(pageNum)
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
                 .subscribeWith(new BaseObserver<ArticlesBean>(mView, false, false) {

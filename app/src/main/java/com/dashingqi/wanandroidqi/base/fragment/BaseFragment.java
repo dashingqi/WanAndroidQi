@@ -86,6 +86,21 @@ public abstract class BaseFragment extends BaseLazyFragment implements BaseView 
     }
 
     @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void showNormalView() {
+
+    }
+
+    @Override
+    public void showErrorView() {
+
+    }
+
+    @Override
     public void lazyLoadData() {
         loadData();
     }

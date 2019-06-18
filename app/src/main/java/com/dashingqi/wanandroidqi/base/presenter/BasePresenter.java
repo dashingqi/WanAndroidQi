@@ -52,7 +52,7 @@ public class BasePresenter<V extends BaseView> implements IPresenter<V> {
     }
 
     @Override
-    public void addRcSubScribe(Disposable disposable) {
+    public void addRxSubScribe(Disposable disposable) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }

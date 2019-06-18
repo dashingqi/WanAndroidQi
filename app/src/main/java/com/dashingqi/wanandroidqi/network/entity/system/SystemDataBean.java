@@ -1,33 +1,32 @@
-package com.dashingqi.wanandroidqi.network.entity.wx;
+package com.dashingqi.wanandroidqi.network.entity.system;
 
 import java.util.List;
 
-public class WxTabData {
-    /**
-     * children": [ ],
-     * "courseId": 13,
-     * "id": 408,
-     * "name": "鸿洋",
-     * "order": 190000,
-     * "parentChapterId": 407,
-     * "userControlSetTop": false,
-     * "visible": 1
-     */
-    private int courseId;
+/**
+ * "courseId": 13,
+ * "id": 150,
+ * "name": "开发环境",
+ * "order": 1,
+ * "parentChapterId": 0,
+ * "userControlSetTop": false,
+ * "visible": 1
+ */
+public class SystemDataBean {
+    private int coursedId;
     private int id;
     private String name;
     private int order;
     private int parentChapterId;
     private boolean userControlSetTop;
     private int visible;
-    private List<?> children;
+    private List<SystemChildrenDataBean> children;
 
-    public int getCourseId() {
-        return courseId;
+    public int getCoursedId() {
+        return coursedId;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public void setCoursedId(int coursedId) {
+        this.coursedId = coursedId;
     }
 
     public int getId() {
@@ -78,11 +77,11 @@ public class WxTabData {
         this.visible = visible;
     }
 
-    public List<?> getChildren() {
+    public List<SystemChildrenDataBean> getChildren() {
         return children;
     }
 
-    public void setChildren(List<?> children) {
+    public void setChildren(List<SystemChildrenDataBean> children) {
         this.children = children;
     }
 }

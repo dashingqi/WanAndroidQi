@@ -25,7 +25,7 @@ public class WxFragmentPresenter extends BasePresenter<WxFragmentContact.View> i
     @Override
     public void getWxTabData() {
         //在这里面进行数据的调用
-        addRcSubScribe(
+        addRxSubScribe(
                 mModel.getWxTabListData()
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
@@ -33,7 +33,8 @@ public class WxFragmentPresenter extends BasePresenter<WxFragmentContact.View> i
                             @Override
                             public void onNext(List<WxTabData> wxTabData) {
                                 super.onNext(wxTabData);
-                                Log.d(TAG, "size = " + wxTabData.size());
+                                Log.d(TAG, wxTabData.size() + " size");
+                                mView.showWxTab(wxTabData);
                             }
                         })
         );
