@@ -63,4 +63,9 @@ public class DataModel implements NetWorkHelper {
         return mNetWorkHelper.getProjectTabData();
     }
 
+    @Override
+    public Observable<BaseResponse<ArticlesBean>> getWeChatArticlesListData(int id, int pageNum) {
+        return mNetWorkHelper.getWeChatArticlesListData(id, pageNum);
+    }
+
 }

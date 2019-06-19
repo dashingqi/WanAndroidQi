@@ -49,6 +49,10 @@ public class WeChatFragment extends BaseLoadingFragment<WxFragmentPresenter> imp
     @Named("WxTabFragmentList")
     List<Fragment> wxTabFragments;
 
+    @Inject
+    @Named("WxTabIdList")
+    List<Integer> wxTabIds;
+
     @BindView(R.id.mSlidingTabLayout)
     protected SlidingTabLayout mSlidingTabLayout;
 
@@ -95,11 +99,12 @@ public class WeChatFragment extends BaseLoadingFragment<WxFragmentPresenter> imp
     public void showWxTab(List<WxTabData> dataList) {
         for (WxTabData wxTabData : dataList) {
             wxTabNames.add(wxTabData.getName());
+            wxTabIds.add(wxTabData.getId());
         }
         Log.d(TAG, "showWxTab:names size " + wxTabNames.size());
 
-        for (int i = 0; i < wxTabNames.size(); i++) {
-            wxTabFragments.add(new SettingFragment());
+        for (int i = 0; i < wxTabIds.size(); i++) {
+            wxTabFragments.add(WeChatArticlesListFragment.newInstance(wxTabIds.get(i)));
         }
 
         Log.d(TAG, "showWxTab: fragments size" + wxTabFragments.size());

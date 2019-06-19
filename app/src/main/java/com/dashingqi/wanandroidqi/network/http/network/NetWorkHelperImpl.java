@@ -89,4 +89,9 @@ public class NetWorkHelperImpl implements NetWorkHelper {
     public Observable<BaseResponse<List<ProjectTabBean>>> getProjectTabData() {
         return mProjectApis.getProjectTabBean();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticlesBean>> getWeChatArticlesListData(int id,int pageNum) {
+        return mWxApis.getWeChatArticlesListData(id,pageNum);
+    }
 }
