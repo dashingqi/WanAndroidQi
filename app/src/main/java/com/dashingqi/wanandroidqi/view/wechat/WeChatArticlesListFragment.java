@@ -1,6 +1,7 @@
 package com.dashingqi.wanandroidqi.view.wechat;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -16,6 +17,9 @@ import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.presenter.wechat.WeChatArticlesListPresenter;
 import com.dashingqi.wanandroidqi.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
 
@@ -58,6 +62,7 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
     private int id;
     private int pageNum = 1;
     private ArticlesAdapter articlesAdapter;
+    private boolean isRefresh = false;
 
     @Override
     public WeChatArticlesListPresenter getPresenter() {
@@ -68,6 +73,7 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
     protected void initView() {
         super.initView();
         initRecyclerView();
+        initSmartRefreshLayout();
         getData();
     }
 
@@ -108,6 +114,27 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
 
     }
 
+    @Override
+    public void showMoreArticlesListData(ArticlesBean data) {
+        if (isRefresh) {
+            if (mArticleList != null && mArticleList.size() > 0) {
+                mArticleList.clear();
+            }
+
+            mSmartRefreshLayout.finishRefresh();
+        } else {
+            if (mArticleList == null || mArticleList.size() == 0) {
+                mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
+            } else {
+                mSmartRefreshLayout.finishLoadMore(true);
+            }
+        }
+
+        mArticleList.addAll(data.getDatas());
+        articlesAdapter.notifyDataSetChanged();
+
+    }
+
     public static WeChatArticlesListFragment newInstance(int id) {
         WeChatArticlesListFragment weChatArticlesListFragment = new WeChatArticlesListFragment();
         Bundle bundle = new Bundle();
@@ -125,9 +152,35 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
             id = arguments.getInt(IntentParams.WXARTICLESID, -1);
     }
 
+    /**
+     * 初始化RecyclerView
+     */
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         articlesAdapter = new ArticlesAdapter(R.layout.item_article_list, mArticleList);
         mRecyclerView.setAdapter(articlesAdapter);
+    }
+
+    private void initSmartRefreshLayout() {
+        //下拉刷新事件
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                pageNum = 1;
+                isRefresh = true;
+                mWeChatArticlesListPresenter.getLoadMoreArticleListData(id, pageNum);
+
+            }
+        });
+
+        //上滑加载事件
+        mSmartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                pageNum++;
+                isRefresh = false;
+                mWeChatArticlesListPresenter.getLoadMoreArticleListData(id, pageNum);
+            }
+        });
     }
 }

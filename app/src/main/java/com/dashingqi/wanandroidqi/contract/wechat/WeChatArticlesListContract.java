@@ -17,13 +17,18 @@ import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
  */
 public interface WeChatArticlesListContract {
 
-    interface View extends BaseView{
+    interface View extends BaseView {
 
         void showArticlesListData(ArticlesBean data);
+
+        void showMoreArticlesListData(ArticlesBean data);
+
     }
 
-    interface Presenter extends IPresenter<View>{
-        void getArticlesListData(int id,int pageNum);
+    interface Presenter extends IPresenter<View> {
+        void getArticlesListData(int id, int pageNum);
+
+        void getLoadMoreArticleListData(int id, int pageNum);
     }
 
 
