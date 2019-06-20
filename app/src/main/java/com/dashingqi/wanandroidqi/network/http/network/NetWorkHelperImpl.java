@@ -3,6 +3,7 @@ package com.dashingqi.wanandroidqi.network.http.network;
 import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+import com.dashingqi.wanandroidqi.network.entity.project.ProjectListBean;
 import com.dashingqi.wanandroidqi.network.entity.project.ProjectTabBean;
 import com.dashingqi.wanandroidqi.network.entity.system.SystemDataBean;
 import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
@@ -93,5 +94,10 @@ public class NetWorkHelperImpl implements NetWorkHelper {
     @Override
     public Observable<BaseResponse<ArticlesBean>> getWeChatArticlesListData(int id,int pageNum) {
         return mWxApis.getWeChatArticlesListData(id,pageNum);
+    }
+
+    @Override
+    public Observable<BaseResponse<ProjectListBean>> getProjectListData(int pageNum,int cid) {
+        return mProjectApis.getProjectListData(pageNum,cid);
     }
 }

@@ -3,6 +3,7 @@ package com.dashingqi.wanandroidqi.network.http.network;
 import com.dashingqi.wanandroidqi.network.entity.BaseResponse;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
+import com.dashingqi.wanandroidqi.network.entity.project.ProjectListBean;
 import com.dashingqi.wanandroidqi.network.entity.project.ProjectTabBean;
 import com.dashingqi.wanandroidqi.network.entity.system.SystemDataBean;
 import com.dashingqi.wanandroidqi.network.entity.wx.WxTabData;
@@ -48,4 +49,7 @@ public interface NetWorkHelper {
 
     //获取到微信公众号对应的文章列表数据
     Observable<BaseResponse<ArticlesBean>> getWeChatArticlesListData(int id,int pageNum);
+
+    //获取到项目列表数据
+    Observable<BaseResponse<ProjectListBean>> getProjectListData(int pageNum,int cid);
 }

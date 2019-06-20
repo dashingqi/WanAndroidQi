@@ -12,8 +12,8 @@ public interface ProjectListContract {
     }
 
     interface Presenter extends IPresenter<View> {
-        void getListData();
+        void getListData(int pageNum,int cid);
 
-        void getListMoreData();
+        void getListMoreData(int pageNum,int cid);
     }
 }

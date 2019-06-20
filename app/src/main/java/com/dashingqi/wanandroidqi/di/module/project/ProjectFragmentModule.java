@@ -30,4 +30,11 @@ public class ProjectFragmentModule {
     List<Fragment> provideProjectFragment() {
         return new ArrayList<>();
     }
+
+    @PreFragment
+    @Provides
+    @Named("ProjectTabId")
+    List<Integer> provideProjectTabIdList() {
+        return new ArrayList<>();
+    }
 }

@@ -53,6 +53,10 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectPresenter> imple
     @Named("ProjectTabFragment")
     protected List<Fragment> mProjectTabFragment;
 
+    @Inject
+    @Named("ProjectTabId")
+    protected List<Integer> mProjectTabId;
+
     @Override
     protected void initData() {
 
@@ -90,9 +94,10 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectPresenter> imple
     public void showProjectTabData(List<ProjectTabBean> data) {
         for (ProjectTabBean tabBean : data) {
             mProjectNameList.add(tabBean.getName());
+            mProjectTabId.add(tabBean.getId());
         }
-        for (int i = 0; i < mProjectNameList.size(); i++) {
-            mProjectTabFragment.add(new SettingFragment());
+        for (int i = 0; i < mProjectTabId.size(); i++) {
+            mProjectTabFragment.add(ProjectListFragment.newInstance(mProjectTabId.get(i)));
         }
 
         TabAdapter tabAdapter = new TabAdapter(getChildFragmentManager(), mProjectNameList, mProjectTabFragment);
