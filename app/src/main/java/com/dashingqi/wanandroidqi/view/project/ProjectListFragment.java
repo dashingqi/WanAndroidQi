@@ -1,6 +1,7 @@
 package com.dashingqi.wanandroidqi.view.project;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,6 +16,9 @@ import com.dashingqi.wanandroidqi.network.entity.project.ProjectListItemBean;
 import com.dashingqi.wanandroidqi.presenter.project.ProjectListPresenter;
 import com.dashingqi.wanandroidqi.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
 
@@ -44,6 +48,7 @@ public class ProjectListFragment extends BaseLoadingFragment<ProjectListPresente
 
     private int pageNum = 1;
     private int cid;
+    private boolean isRefresh = false;
 
 
     @Override
@@ -81,6 +86,7 @@ public class ProjectListFragment extends BaseLoadingFragment<ProjectListPresente
         super.initView();
         getData();
         initRecyclerView();
+        initSmartRefreshLayout();
 
     }
 
@@ -125,5 +131,44 @@ public class ProjectListFragment extends BaseLoadingFragment<ProjectListPresente
     @Override
     public void showMoreListData(ProjectListBean data) {
 
+        if (isRefresh) {
+            if (mProjectListBeanList != null && mProjectListBeanList.size() > 0) {
+                mProjectListBeanList.clear();
+            }
+            mSmartRefreshLayout.finishRefresh();
+        } else {
+            if (mProjectListBeanList == null || mProjectListBeanList.size() == 0) {
+                mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
+            } else {
+                mSmartRefreshLayout.finishLoadMore(true);
+            }
+        }
+
+        mProjectListBeanList.addAll(data.getDatas());
+        mProjectListAdapter.notifyDataSetChanged();
+
+    }
+
+    /**
+     * 初始化SmartRefreshLayout
+     */
+    private void initSmartRefreshLayout() {
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                isRefresh = true;
+                pageNum = 1;
+                mProjectListPresenter.getListMoreData(pageNum, cid);
+
+            }
+        });
+        mSmartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                isRefresh = false;
+                pageNum++;
+                mProjectListPresenter.getListMoreData(pageNum, cid);
+            }
+        });
     }
 }
