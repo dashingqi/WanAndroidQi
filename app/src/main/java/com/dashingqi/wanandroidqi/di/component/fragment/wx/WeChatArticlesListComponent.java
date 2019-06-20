@@ -1,6 +1,7 @@
 package com.dashingqi.wanandroidqi.di.component.fragment.wx;
 
 import com.dashingqi.wanandroidqi.di.module.wechat.WeChatArticleListModule;
+import com.dashingqi.wanandroidqi.di.scope.PreFragment;
 import com.dashingqi.wanandroidqi.view.wechat.WeChatArticlesListFragment;
 
 import dagger.Subcomponent;
@@ -16,6 +17,7 @@ import dagger.Subcomponent;
  * @UpdateRemark:
  * @Version: 1.0
  */
+@PreFragment
 @Subcomponent(modules = WeChatArticleListModule.class)
 public interface WeChatArticlesListComponent {
 

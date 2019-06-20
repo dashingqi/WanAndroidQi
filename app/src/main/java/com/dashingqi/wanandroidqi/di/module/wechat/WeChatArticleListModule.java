@@ -1,15 +1,16 @@
 package com.dashingqi.wanandroidqi.di.module.wechat;
 
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.dashingqi.wanandroidqi.R;
+import com.dashingqi.wanandroidqi.adapter.ArticlesAdapter;
 import com.dashingqi.wanandroidqi.application.ApplicationQi;
+import com.dashingqi.wanandroidqi.di.scope.PreFragment;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticleBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,15 +30,22 @@ import dagger.Provides;
 public class WeChatArticleListModule {
 
 
+    @PreFragment
     @Provides
-    @Named("WxArticlesLinearManager")
     LinearLayoutManager provideLinearLayoutManager() {
         return new LinearLayoutManager(ApplicationQi.getContext());
     }
 
+    @PreFragment
     @Provides
-    @Named("WxArticleList")
     List<ArticleBean> provideArticleList() {
         return new ArrayList<>();
     }
+
+    @PreFragment
+    @Provides
+    ArticlesAdapter provideArticlesAdapter(List<ArticleBean> data){
+        return new ArticlesAdapter(R.layout.item_article_list,data);
+    }
+
 }

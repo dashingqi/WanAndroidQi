@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.adapter.ArticlesAdapter;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
-import com.dashingqi.wanandroidqi.common.Constant;
 import com.dashingqi.wanandroidqi.common.IntentParams;
 import com.dashingqi.wanandroidqi.contract.wechat.WeChatArticlesListContract;
 import com.dashingqi.wanandroidqi.di.module.wechat.WeChatArticleListModule;
@@ -24,7 +23,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
+
 
 import butterknife.BindView;
 
@@ -45,12 +44,13 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
     WeChatArticlesListPresenter mWeChatArticlesListPresenter;
 
     @Inject
-    @Named("WxArticlesLinearManager")
     LinearLayoutManager mLinearLayoutManager;
 
     @Inject
-    @Named("WxArticleList")
     List<ArticleBean> mArticleList;
+
+    @Inject
+    ArticlesAdapter mArticlesAdapter;
 
     @BindView(R.id.mRecyclerView)
     protected RecyclerView mRecyclerView;
@@ -61,7 +61,6 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
 
     private int id;
     private int pageNum = 1;
-    private ArticlesAdapter articlesAdapter;
     private boolean isRefresh = false;
 
     @Override
@@ -109,7 +108,7 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
             mArticleList.add(articleBean);
         }
 
-        articlesAdapter.notifyDataSetChanged();
+        mArticlesAdapter.notifyDataSetChanged();
 
 
     }
@@ -131,7 +130,7 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
         }
 
         mArticleList.addAll(data.getDatas());
-        articlesAdapter.notifyDataSetChanged();
+        mArticlesAdapter.notifyDataSetChanged();
 
     }
 
@@ -157,8 +156,7 @@ public class WeChatArticlesListFragment extends BaseLoadingFragment<WeChatArticl
      */
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        articlesAdapter = new ArticlesAdapter(R.layout.item_article_list, mArticleList);
-        mRecyclerView.setAdapter(articlesAdapter);
+        mRecyclerView.setAdapter(mArticlesAdapter);
     }
 
     private void initSmartRefreshLayout() {
