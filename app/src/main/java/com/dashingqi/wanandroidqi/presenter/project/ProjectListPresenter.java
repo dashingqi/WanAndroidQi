@@ -12,8 +12,6 @@ import com.dashingqi.wanandroidqi.utils.RxUtil;
 import javax.inject.Inject;
 
 public class ProjectListPresenter extends BasePresenter<ProjectListContract.View> implements ProjectListContract.Presenter {
-    private static final String TAG = "ProjectListPresenter";
-
     @Inject
     public ProjectListPresenter(DataModel dataModel) {
         super(dataModel);
@@ -29,7 +27,7 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
                             @Override
                             public void onNext(ProjectListBean projectListBean) {
                                 super.onNext(projectListBean);
-                                Log.d(TAG, "onNext: ProjectList size = " + projectListBean.getDatas().size());
+                                mView.showListData(projectListBean);
                             }
                         })
         );

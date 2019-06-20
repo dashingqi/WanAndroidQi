@@ -2,13 +2,14 @@ package com.dashingqi.wanandroidqi.contract.project;
 
 import com.dashingqi.wanandroidqi.base.presenter.IPresenter;
 import com.dashingqi.wanandroidqi.base.view.BaseView;
+import com.dashingqi.wanandroidqi.network.entity.project.ProjectListBean;
 
 public interface ProjectListContract {
 
     interface View extends BaseView {
-        void showListData();
+        void showListData(ProjectListBean data);
 
-        void showMoreListData();
+        void showMoreListData(ProjectListBean data);
     }
 
     interface Presenter extends IPresenter<View> {
