@@ -26,14 +26,12 @@ import com.orhanobut.logger.PrettyFormatStrategy;
  */
 public class ApplicationQi extends Application {
     private static ApplicationQi mApp;
-    private static Context instance;
     private static AppComponent mAppComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mApp = this;
-        instance = getApplicationContext();
         mAppComponent = DaggerAppComponent
                 .builder()
                 .appModule(new AppModule(mApp))
