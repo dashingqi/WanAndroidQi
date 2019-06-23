@@ -1,7 +1,6 @@
 package com.dashingqi.wanandroidqi.view.home;
 
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +19,7 @@ import com.dashingqi.wanandroidqi.network.entity.home.ArticleBean;
 import com.dashingqi.wanandroidqi.network.entity.home.BannerDataBean;
 import com.dashingqi.wanandroidqi.presenter.home.HomeFragmentPresenter;
 import com.dashingqi.wanandroidqi.utils.image.BannerImageLoader;
+import com.dashingqi.wanandroidqi.view.ArticleDetailActivity;
 import com.dashingqi.wanandroidqi.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -174,7 +174,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
             if (articleList.size() == 0)
                 mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
             else
-                mSmartRefreshLayout.finishLoadMore(4000);
+                mSmartRefreshLayout.finishLoadMore(true);
         }
 
         articleList.addAll(data);

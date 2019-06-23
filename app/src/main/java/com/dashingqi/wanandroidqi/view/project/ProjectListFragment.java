@@ -1,10 +1,13 @@
 package com.dashingqi.wanandroidqi.view.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.adapter.ProjectListAdapter;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
@@ -14,6 +17,7 @@ import com.dashingqi.wanandroidqi.di.module.project.ProjectListFragmentModule;
 import com.dashingqi.wanandroidqi.network.entity.project.ProjectListBean;
 import com.dashingqi.wanandroidqi.network.entity.project.ProjectListItemBean;
 import com.dashingqi.wanandroidqi.presenter.project.ProjectListPresenter;
+import com.dashingqi.wanandroidqi.view.ArticleDetailActivity;
 import com.dashingqi.wanandroidqi.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -116,6 +120,17 @@ public class ProjectListFragment extends BaseLoadingFragment<ProjectListPresente
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mProjectListAdapter);
+        mProjectListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ArticleDetailActivity.startActivityForResultByFragment(mActivity,
+                        ProjectListFragment.this,
+                        mProjectListBeanList.get(position).getTitle(),
+                        mProjectListBeanList.get(position).getLink(),
+                        IntentParams.REQUEST_ARTICLE_DETAIL_ACTIVITY
+                );
+            }
+        });
 
     }
 

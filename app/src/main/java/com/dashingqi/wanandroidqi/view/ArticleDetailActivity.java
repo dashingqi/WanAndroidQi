@@ -1,4 +1,4 @@
-package com.dashingqi.wanandroidqi.view.home;
+package com.dashingqi.wanandroidqi.view;
 
 
 import android.app.Activity;

@@ -1,9 +1,8 @@
 package com.dashingqi.wanandroidqi.di.component.fragment.home;
 
 import com.dashingqi.wanandroidqi.di.component.AppComponent;
-import com.dashingqi.wanandroidqi.di.module.AppModule;
 import com.dashingqi.wanandroidqi.di.scope.PreActivity;
-import com.dashingqi.wanandroidqi.view.home.ArticleDetailActivity;
+import com.dashingqi.wanandroidqi.view.ArticleDetailActivity;
 
 import dagger.Component;
 
