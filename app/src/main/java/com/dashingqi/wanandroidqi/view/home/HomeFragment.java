@@ -1,6 +1,7 @@
 package com.dashingqi.wanandroidqi.view.home;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.adapter.ArticlesAdapter;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
+import com.dashingqi.wanandroidqi.common.IntentParams;
 import com.dashingqi.wanandroidqi.contract.home.HomeFragmentContract;
 import com.dashingqi.wanandroidqi.di.module.home.HomeFragmentModule;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticleBean;
@@ -214,5 +217,16 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
         mArticleAdapter.addHeaderView(mBannerLayout);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mArticleAdapter);
+        mArticleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ArticleDetailActivity.startActivityForResultByFragment(mActivity,
+                        HomeFragment.this,
+                        articleList.get(position).getTitle(),
+                        articleList.get(position).getLink(),
+                        IntentParams.REQUEST_ARTICLE_DETAIL_ACTIVITY);
+
+            }
+        });
     }
 }

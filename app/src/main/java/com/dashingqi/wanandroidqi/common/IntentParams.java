@@ -14,4 +14,8 @@ package com.dashingqi.wanandroidqi.common;
 public class IntentParams {
     public static final String WXARTICLESID = "wx_articles_id";
     public static final String PROJECTLISTID = "project_list_id";
+    public static final String ARTICLEURL = "article_url";
+    public static final String ARTICLETITLE = "article_title";
+
+    public static final int REQUEST_ARTICLE_DETAIL_ACTIVITY = 0;
 }

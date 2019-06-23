@@ -46,4 +46,6 @@ public interface MainActivityComponent {
     WeChatArticlesListComponent getWeChatArticlesListComponent(WeChatArticleListModule weChatArticleListModule);
 
     ProjectListFragmentComponent getProjectListFragmentComponent(ProjectListFragmentModule projectListFragmentModule);
+
+
 }
