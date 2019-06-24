@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.adapter.ArticlesAdapter;
 import com.dashingqi.wanandroidqi.application.ApplicationQi;
@@ -15,6 +17,7 @@ import com.dashingqi.wanandroidqi.di.component.fragment.system.DaggerSystemArtic
 import com.dashingqi.wanandroidqi.network.entity.home.ArticleBean;
 import com.dashingqi.wanandroidqi.network.entity.home.ArticlesBean;
 import com.dashingqi.wanandroidqi.presenter.system.SystemArticleListPresenter;
+import com.dashingqi.wanandroidqi.view.ArticleDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -87,6 +90,16 @@ public class SystemArticleFragment extends BaseLoadingFragment<SystemArticleList
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mArticlesAdapter);
+
+        mArticlesAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ArticleDetailActivity.startActivityForResultByFragment(mActivity, SystemArticleFragment.this,
+                        mArticleBeanList.get(position).getTitle(),
+                        mArticleBeanList.get(position).getLink(),
+                        IntentParams.REQUEST_ARTICLE_DETAIL_ACTIVITY);
+            }
+        });
     }
 
     @Override
