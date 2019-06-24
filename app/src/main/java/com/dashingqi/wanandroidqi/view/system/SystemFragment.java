@@ -4,12 +4,15 @@ package com.dashingqi.wanandroidqi.view.system;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dashingqi.wanandroidqi.R;
 import com.dashingqi.wanandroidqi.adapter.SystemListAdapter;
 import com.dashingqi.wanandroidqi.base.fragment.BaseLoadingFragment;
 import com.dashingqi.wanandroidqi.contract.system.SystemFragmentContract;
 import com.dashingqi.wanandroidqi.di.module.system.SystemFragmentModule;
+import com.dashingqi.wanandroidqi.network.entity.system.SystemChildrenDataBean;
 import com.dashingqi.wanandroidqi.network.entity.system.SystemDataBean;
 import com.dashingqi.wanandroidqi.presenter.system.SystemFragmentPresenter;
 import com.dashingqi.wanandroidqi.view.MainActivity;
@@ -44,6 +47,12 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
 
     @Inject
     protected List<SystemDataBean> systemDataList;
+
+    @Inject
+    protected List<String> tabNamesList;
+
+    @Inject
+    protected List<Integer> tabIdsList;
 
     @Inject
     protected SystemListAdapter mSystemListAdapter;
@@ -117,5 +126,22 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mSystemListAdapter);
+
+        mSystemListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                tabNamesList.clear();
+                tabIdsList.clear();
+                for (SystemChildrenDataBean systemChildrenDataBean : systemDataList.get(position).getChildren()) {
+                    tabNamesList.add(systemChildrenDataBean.getName());
+                    tabIdsList.add(systemChildrenDataBean.getId());
+                }
+                SystemArticleActivity.startActivityByFragment(mActivity,
+                        systemDataList.get(position).getName(),
+                        tabNamesList,
+                        tabIdsList
+                );
+            }
+        });
     }
 }

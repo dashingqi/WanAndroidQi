@@ -17,5 +17,9 @@ public class IntentParams {
     public static final String ARTICLEURL = "article_url";
     public static final String ARTICLETITLE = "article_title";
 
+    public static final String ARTICLE_TAB_NAMES_LIST = "article_tab_names_list";
+    public static final String ARTICLE_TAB_IDS_LIST = "article_tab_ids_list";
+
+
     public static final int REQUEST_ARTICLE_DETAIL_ACTIVITY = 0;
 }

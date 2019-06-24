@@ -1,5 +1,6 @@
 package com.dashingqi.wanandroidqi.di.module.system;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.dashingqi.wanandroidqi.R;
@@ -32,6 +33,17 @@ public class SystemFragmentModule {
         return new ArrayList<>();
     }
 
+    @Provides
+    @PreFragment
+    List<String> provideSystemTabNameList() {
+        return new ArrayList<>();
+    }
+
+    @Provides
+    @PreFragment
+    List<Integer> provideSystemTabIdList() {
+        return new ArrayList<>();
+    }
 
     @Provides
     @PreFragment
