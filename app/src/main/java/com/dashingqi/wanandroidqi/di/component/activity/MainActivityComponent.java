@@ -4,6 +4,7 @@ import com.dashingqi.wanandroidqi.di.component.AppComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.home.HomeFragmentComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.project.ProjectFragmentComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.project.ProjectListFragmentComponent;
+import com.dashingqi.wanandroidqi.di.component.fragment.system.SystemArticleListComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.system.SystemFragmentComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.wx.WeChatArticlesListComponent;
 import com.dashingqi.wanandroidqi.di.component.fragment.wx.WxFragmentComponent;
@@ -11,6 +12,7 @@ import com.dashingqi.wanandroidqi.di.module.project.ProjectFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.home.HomeFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.main.MainActivityModule;
 import com.dashingqi.wanandroidqi.di.module.project.ProjectListFragmentModule;
+import com.dashingqi.wanandroidqi.di.module.system.SystemArticleListModule;
 import com.dashingqi.wanandroidqi.di.module.system.SystemFragmentModule;
 import com.dashingqi.wanandroidqi.di.module.wechat.WeChatArticleListModule;
 import com.dashingqi.wanandroidqi.di.module.wx.WxFragmentModule;
@@ -46,6 +48,4 @@ public interface MainActivityComponent {
     WeChatArticlesListComponent getWeChatArticlesListComponent(WeChatArticleListModule weChatArticleListModule);
 
     ProjectListFragmentComponent getProjectListFragmentComponent(ProjectListFragmentModule projectListFragmentModule);
-
-
 }

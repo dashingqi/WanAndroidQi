@@ -100,4 +100,9 @@ public class NetWorkHelperImpl implements NetWorkHelper {
     public Observable<BaseResponse<ProjectListBean>> getProjectListData(int pageNum,int cid) {
         return mProjectApis.getProjectListData(pageNum,cid);
     }
+
+    @Override
+    public Observable<BaseResponse<ArticlesBean>> getArticlesListData(int pageNum, int cid) {
+        return mSystemApis.getArticlesList(pageNum,cid);
+    }
 }

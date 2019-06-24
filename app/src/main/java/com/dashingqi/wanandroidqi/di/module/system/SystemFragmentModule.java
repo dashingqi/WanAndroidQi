@@ -1,6 +1,5 @@
 package com.dashingqi.wanandroidqi.di.module.system;
 
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.dashingqi.wanandroidqi.R;

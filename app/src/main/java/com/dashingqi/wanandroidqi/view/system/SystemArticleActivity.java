@@ -1,7 +1,6 @@
 package com.dashingqi.wanandroidqi.view.system;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
@@ -75,7 +74,7 @@ public class SystemArticleActivity extends BaseActivity {
     private void initTabLayout() {
         mFragmentsList = new ArrayList<>();
         for (int i = 0; i < mTabNamesList.size(); i++) {
-            mFragmentsList.add(new SystemArticleFragment());
+            mFragmentsList.add(SystemArticleFragment.newInstance(mTabIdsList.get(i)));
         }
         TabAdapter mTabAdapter = new TabAdapter(getSupportFragmentManager(), mTabNamesList, mFragmentsList);
         mViewPager.setAdapter(mTabAdapter);

@@ -48,8 +48,11 @@ public interface NetWorkHelper {
     Observable<BaseResponse<List<ProjectTabBean>>> getProjectTabData();
 
     //获取到微信公众号对应的文章列表数据
-    Observable<BaseResponse<ArticlesBean>> getWeChatArticlesListData(int id,int pageNum);
+    Observable<BaseResponse<ArticlesBean>> getWeChatArticlesListData(int id, int pageNum);
 
     //获取到项目列表数据
-    Observable<BaseResponse<ProjectListBean>> getProjectListData(int pageNum,int cid);
+    Observable<BaseResponse<ProjectListBean>> getProjectListData(int pageNum, int cid);
+
+    //获取到知识体系下的文章
+    Observable<BaseResponse<ArticlesBean>> getArticlesListData(int pageNum, int cid);
 }

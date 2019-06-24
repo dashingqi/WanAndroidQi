@@ -71,7 +71,12 @@ public class DataModel implements NetWorkHelper {
 
     @Override
     public Observable<BaseResponse<ProjectListBean>> getProjectListData(int pageNum, int cid) {
-        return mNetWorkHelper.getProjectListData(pageNum,cid);
+        return mNetWorkHelper.getProjectListData(pageNum, cid);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticlesBean>> getArticlesListData(int pageNum, int cid) {
+        return mNetWorkHelper.getArticlesListData(pageNum, cid);
     }
 
 }
