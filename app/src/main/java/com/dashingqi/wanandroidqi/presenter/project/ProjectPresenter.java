@@ -47,7 +47,7 @@ public class ProjectPresenter extends BasePresenter<ProjectContract.View> implem
                 mModel.getProjectTabData()
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<List<ProjectTabBean>>(mView, false, false) {
+                        .subscribeWith(new BaseObserver<List<ProjectTabBean>>(mView) {
                             @Override
                             public void onNext(List<ProjectTabBean> projectTabBeans) {
                                 super.onNext(projectTabBeans);

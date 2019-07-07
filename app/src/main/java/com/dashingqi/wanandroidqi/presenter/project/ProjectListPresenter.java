@@ -23,7 +23,7 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
                 mModel.getProjectListData(pageNum, cid)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<ProjectListBean>(mView, false, false) {
+                        .subscribeWith(new BaseObserver<ProjectListBean>(mView) {
                             @Override
                             public void onNext(ProjectListBean projectListBean) {
                                 super.onNext(projectListBean);

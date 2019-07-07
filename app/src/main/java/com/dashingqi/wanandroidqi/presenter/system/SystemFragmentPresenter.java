@@ -29,7 +29,7 @@ public class SystemFragmentPresenter extends BasePresenter<SystemFragmentContrac
                 mModel.getSystemData()
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<List<SystemDataBean>>(mView, false, false) {
+                        .subscribeWith(new BaseObserver<List<SystemDataBean>>(mView) {
                             @Override
                             public void onNext(List<SystemDataBean> systemDataBeans) {
                                 super.onNext(systemDataBeans);

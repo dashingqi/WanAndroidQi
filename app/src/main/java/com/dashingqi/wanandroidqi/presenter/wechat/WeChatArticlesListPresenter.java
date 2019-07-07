@@ -31,20 +31,21 @@ public class WeChatArticlesListPresenter extends BasePresenter<WeChatArticlesLis
     }
 
     @Override
-    public void getArticlesListData(int id,int pageNum) {
+    public void getArticlesListData(int id, int pageNum) {
 
         addRxSubScribe(
-                mModel.getWeChatArticlesListData(id,pageNum)
-                .compose(RxUtil.rxSchedulerHelper())
-                .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<ArticlesBean>(mView){
-                    @Override
-                    public void onNext(ArticlesBean articlesBean) {
-                        Log.d(TAG, "onNext: size = "+articlesBean.getDatas().size());
-                        mView.showArticlesListData(articlesBean);
+                mModel.getWeChatArticlesListData(id, pageNum)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .compose(RxUtil.handleResult())
+                        .subscribeWith(new BaseObserver<ArticlesBean>(mView) {
+                            @Override
+                            public void onNext(ArticlesBean articlesBean) {
+                                super.onNext(articlesBean);
+                                Log.d(TAG, "onNext: size = " + articlesBean.getDatas().size());
+                                mView.showArticlesListData(articlesBean);
 
-                    }
-                })
+                            }
+                        })
         );
 
     }
@@ -52,13 +53,13 @@ public class WeChatArticlesListPresenter extends BasePresenter<WeChatArticlesLis
     @Override
     public void getLoadMoreArticleListData(int id, int pageNum) {
         addRxSubScribe(
-                mModel.getWeChatArticlesListData(id,pageNum)
+                mModel.getWeChatArticlesListData(id, pageNum)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<ArticlesBean>(mView,false,false){
+                        .subscribeWith(new BaseObserver<ArticlesBean>(mView, false, false) {
                             @Override
                             public void onNext(ArticlesBean articlesBean) {
-                                Log.d(TAG, "onNext: size = "+articlesBean.getDatas().size());
+                                Log.d(TAG, "onNext: size = " + articlesBean.getDatas().size());
                                 mView.showMoreArticlesListData(articlesBean);
 
                             }

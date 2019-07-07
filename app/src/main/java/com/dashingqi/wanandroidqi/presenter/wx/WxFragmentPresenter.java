@@ -27,7 +27,7 @@ public class WxFragmentPresenter extends BasePresenter<WxFragmentContact.View> i
                 mModel.getWxTabListData()
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<List<WxTabData>>(mView, false, false) {
+                        .subscribeWith(new BaseObserver<List<WxTabData>>(mView) {
                             @Override
                             public void onNext(List<WxTabData> wxTabData) {
                                 super.onNext(wxTabData);
