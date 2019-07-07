@@ -5,24 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/mSlidingTabLayout"
+    <LinearLayout
+        android:id="@+id/mNormalView"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_22"
-        android:layout_marginTop="@dimen/dp_5"
-        android:layout_marginBottom="@dimen/dp_5"
-        android:elevation="@dimen/dp_5"
-        app:tl_indicator_width="@dimen/dp_0"
-        app:tl_textAllCaps="false"
-        app:tl_textBold="BOTH"
-        app:tl_textSelectColor="@color/colorPrimary"
-        app:tl_textUnselectColor="@color/black"
-        app:tl_textsize="@dimen/sp_18" />
+        android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/mProjectViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/mSlidingTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_22"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:elevation="@dimen/dp_5"
+            app:tl_indicator_width="@dimen/dp_0"
+            app:tl_textAllCaps="false"
+            app:tl_textBold="BOTH"
+            app:tl_textSelectColor="@color/colorPrimary"
+            app:tl_textUnselectColor="@color/black"
+            app:tl_textsize="@dimen/sp_18" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mProjectViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 
 </LinearLayout>

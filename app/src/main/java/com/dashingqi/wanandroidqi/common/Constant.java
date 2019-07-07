@@ -15,4 +15,7 @@ public class Constant {
 
     //base url
     public final static String BASE_URL = "https://www.wanandroid.com/";
+
+    public final static int NORMAL_VIEW_STATE = 0;
+    public final static int LOADING_VIEW_STATE = 1;
 }

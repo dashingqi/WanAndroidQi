@@ -33,7 +33,6 @@ public abstract class BaseFragment extends BaseLazyFragment implements BaseView 
     protected Activity mActivity;
     private View mView;
     private Unbinder mBinder;
-    protected ProgressDialog mProgressDialog;
 
     protected abstract void initData();
 
@@ -58,9 +57,6 @@ public abstract class BaseFragment extends BaseLazyFragment implements BaseView 
         mView = inflater.inflate(getLayoutId(), container, false);
         mBinder = ButterKnife.bind(this, mView);
         inject();
-        mProgressDialog = new ProgressDialog(mActivity);
-        mProgressDialog.setTitle("正在加载");
-        mProgressDialog.setCancelable(false);
         return mView;
     }
 

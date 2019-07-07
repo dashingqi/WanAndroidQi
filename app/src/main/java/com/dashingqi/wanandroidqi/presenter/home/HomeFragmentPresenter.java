@@ -66,7 +66,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                 mModel.getHomeArticles(pageNum)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<ArticlesBean>(mView, false, false) {
+                        .subscribeWith(new BaseObserver<ArticlesBean>(mView) {
                             @Override
                             public void onNext(ArticlesBean articlesBean) {
                                 super.onNext(articlesBean);

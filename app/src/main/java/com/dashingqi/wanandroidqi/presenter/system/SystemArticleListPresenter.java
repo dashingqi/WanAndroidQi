@@ -21,7 +21,7 @@ public class SystemArticleListPresenter extends BasePresenter<SystemArticleListC
                 mModel.getArticlesListData(pageNum, cid)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<ArticlesBean>(mView, false, false) {
+                        .subscribeWith(new BaseObserver<ArticlesBean>(mView) {
                             @Override
                             public void onNext(ArticlesBean articlesBean) {
                                 super.onNext(articlesBean);

@@ -18,4 +18,9 @@
     <string name="error_view_network">网络不给力</string>
     <string name="error_view_retry">重试</string>
 
+    <!--Loading View TextView-->
+
+    <string name="loading_view_text">DashingQi</string>
+
+
 </resources>

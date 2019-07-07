@@ -37,7 +37,7 @@ public class WeChatArticlesListPresenter extends BasePresenter<WeChatArticlesLis
                 mModel.getWeChatArticlesListData(id,pageNum)
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<ArticlesBean>(mView,false,false){
+                .subscribeWith(new BaseObserver<ArticlesBean>(mView){
                     @Override
                     public void onNext(ArticlesBean articlesBean) {
                         Log.d(TAG, "onNext: size = "+articlesBean.getDatas().size());
